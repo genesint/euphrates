@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <p class="oe_grey" style="margin: 10px">
-                    Fill in this form to create an Odoo database. You can
+                    Fill in this form to create a database. You can
                     create databases for different companies or for different
                     goals (testing, production). Once the database is created,
                     you will be able to install your first application.
