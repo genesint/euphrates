@@ -1,0 +1,116 @@
+<openerp>
+    <data>
+        <record id="pos_report_view" model="ir.ui.view">
+            <field name="name">POS Report View</field>
+            <field name="model">pos.report.model</field>
+            <field name="arch" type="xml">
+                <tree string="POS Report" create="false">
+                    <field name="id" invisible="1"/>
+                    <field name="create_date"/>
+                    <field name="login"/>
+                    <field name="pos_reference"/>
+                    <field name="name_template"/>
+                    <field name="complete_name"/>
+                    <field name="sale_price_unit"/>
+                    <field name="cost_price_unit"/>
+                    <field name="price_subtotal"/>
+                    <field name="qty"/>
+                    <field name="profit"/>
+                </tree>
+            </field>
+        </record>
+        <record id="stock_report_view" model="ir.ui.view">
+            <field name="name">Stock Report View</field>
+            <field name="model">stock.report.model</field>
+            <field name="arch" type="xml">
+                <tree string="Stock Report" create="false">
+                    <field name="id" invisible="1"/>
+                    <field name="create_date"/>
+                    <field name="write_date"/>
+                    <field name="in_date"/>
+                    <field name="name_template"/>
+                    <field name="complete_name"/>
+                    <field name="qty"/>
+                    <field name="cost"/>
+                    <field name="inventory_value"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_pos_report_filter" model="ir.ui.view">
+            <field name="name">pos.report.search</field>
+            <field name="model">pos.report.model</field>
+            <field name="arch" type="xml">
+                <search string="Search POS Report">
+                    <field name="login" />
+                    <field name="pos_reference"/>
+                    <field name="name_template"/>
+                    <field name="complete_name"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_stock_report_filter" model="ir.ui.view">
+            <field name="name">stock.report.search</field>
+            <field name="model">stock.report.model</field>
+            <field name="arch" type="xml">
+                <search string="Search Stock Report">
+                    <field name="name_template"/>
+                    <field name="complete_name"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_pos_report" model="ir.actions.act_window">
+            <field name="name">POS Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.report.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="pos_report_view"/>
+            <field name="search_view_id" ref="view_pos_report_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a Quotation, the first step of a new sale.
+                </p>
+                <p>
+                    Your next actions should flow efficiently: confirm the Quotation to a Sale Order, then create the
+                    Invoice and collect the Payment.
+                </p>
+                <p>
+                    Note that once a Quotation becomes a Sale Order, it will be moved from the Quotations list to the
+                    Sales Order list.
+                </p>
+            </field>
+        </record>
+        <record id="action_stock_report" model="ir.actions.act_window">
+            <field name="name">Stock Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.report.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="stock_report_view"/>
+            <field name="search_view_id" ref="view_stock_report_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a Quotation, the first step of a new sale.
+                </p>
+                <p>
+                    Your next actions should flow efficiently: confirm the Quotation to a Sale Order, then create the
+                    Invoice and collect the Payment.
+                </p>
+                <p>
+                    Note that once a Quotation becomes a Sale Order, it will be moved from the Quotations list to the
+                    Sales Order list.
+                </p>
+            </field>
+        </record>
+        <menuitem action="action_stock_report"
+                  id="menu_action_stock_report" parent="base.menu_sales"
+                  sequence="12"/>
+        <menuitem action="action_pos_report"
+                  id="menu_action_pos_report" parent="base.menu_sales"
+                  sequence="12"/>
+        <menuitem action="ir_export_extended_ept.ir_exports_action_ept"
+                  id="menu_action_export" parent="base.menu_sales" name="Export Reports"
+                  sequence="12"/>
+    </data>
+</openerp>
