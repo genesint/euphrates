@@ -63,7 +63,9 @@ class stock_report_model(osv.osv):
         'qty': fields.float('Qty', readonly=True),
         'cost': fields.float('Cost', readonly=True),
         'name_template': fields.char('Product', readonly=True),
-        'complete_name': fields.char('Destination', readonly=True),
+        'current_location': fields.char('Current', readonly=True),
+        'origin_location': fields.char('Origin', readonly=True),
+        'dest_location': fields.char('Destination', readonly=True),
         'inventory_value': fields.float('Inventory Value', readonly=True)
     }
     _order = 'create_date asc, in_date asc'
@@ -74,17 +76,23 @@ class stock_report_model(osv.osv):
             CREATE OR REPLACE VIEW stock_report_model AS (
             SELECT
 			row_number() OVER () as id,
-			a.create_date,
-			a.write_date,
-			a.in_date,
-			a.qty,
-			a.cost,
-			b.name_template,
-			d.complete_name,
-			(a.cost*a.qty) as inventory_value
-			FROM stock_quant a
-			JOIN product_product b on a.product_id=b.id
-			JOIN stock_location d on a.location_id=d.id
+			a1.create_date,
+			a1.write_date,
+			a1.in_date,
+			a1.qty,
+			a1.cost,
+			a4.name_template,
+			a5.complete_name as current_location,
+			a6.complete_name as origin_location,
+			a7.complete_name as dest_location,
+			(a1.cost*a1.qty) as inventory_value
+			FROM stock_quant a1
+			JOIN stock_quant_move_rel a2 on a1.id=a2.quant_id
+			JOIN stock_move a3 on a2.move_id=a3.id
+			JOIN product_product a4 on a1.product_id=a4.id
+			JOIN stock_location a5 on a1.location_id=a5.id
+            join stock_location a6 on a3.location_id=a6.id
+            join stock_location a7 on a3.location_dest_id=a7.id
             )
         """)
 

@@ -29,7 +29,9 @@
                     <field name="write_date"/>
                     <field name="in_date"/>
                     <field name="name_template"/>
-                    <field name="complete_name"/>
+                    <field name="current_location"/>
+                    <field name="origin_location"/>
+                    <field name="dest_location"/>
                     <field name="qty"/>
                     <field name="cost"/>
                     <field name="inventory_value"/>
@@ -55,7 +57,9 @@
             <field name="arch" type="xml">
                 <search string="Search Stock Report">
                     <field name="name_template"/>
-                    <field name="complete_name"/>
+                    <field name="current_location"/>
+                    <field name="origin_location"/>
+                    <field name="dest_location"/>
                 </search>
             </field>
         </record>
@@ -69,16 +73,9 @@
             <field name="search_view_id" ref="view_pos_report_filter"/>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Create a Quotation, the first step of a new sale.
+                    The POS Report
                 </p>
-                <p>
-                    Your next actions should flow efficiently: confirm the Quotation to a Sale Order, then create the
-                    Invoice and collect the Payment.
-                </p>
-                <p>
-                    Note that once a Quotation becomes a Sale Order, it will be moved from the Quotations list to the
-                    Sales Order list.
-                </p>
+
             </field>
         </record>
         <record id="action_stock_report" model="ir.actions.act_window">
@@ -91,15 +88,7 @@
             <field name="search_view_id" ref="view_stock_report_filter"/>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Create a Quotation, the first step of a new sale.
-                </p>
-                <p>
-                    Your next actions should flow efficiently: confirm the Quotation to a Sale Order, then create the
-                    Invoice and collect the Payment.
-                </p>
-                <p>
-                    Note that once a Quotation becomes a Sale Order, it will be moved from the Quotations list to the
-                    Sales Order list.
+                    The Stock Report
                 </p>
             </field>
         </record>
