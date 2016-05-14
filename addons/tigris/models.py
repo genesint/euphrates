@@ -51,9 +51,86 @@ class pos_report_model(osv.osv):
 
 pos_report_model()
 
-class stock_report_model(osv.osv):
-    _name = "stock.report.model"
-    _description = "Stock Report"
+class stock_move_model(osv.osv):
+    _name = "stock.move.model"
+    _description = "Stock Move Report"
+    _auto = False
+    _columns = {
+        'id': fields.integer('id', readonly=True),
+        'create_date': fields.date('Create Date', readonly=True),
+        'date': fields.date('Date', readonly=True),
+        'product': fields.char('Product', readonly=True),
+        'origin': fields.char('Origin', readonly=True),
+        'location1': fields.char('Location1', readonly=True),
+        'location2': fields.char('Location2', readonly=True),
+        'name': fields.char('Reference', readonly=True),
+        'price_unit': fields.float('Price per unit', readonly=True),
+        'product_qty': fields.float('Quantity', readonly=True),
+        'inventory_value': fields.float('Inventory Value', readonly=True)
+    }
+    _order = 'create_date asc'
+
+    def init(self, cr):
+        tools.sql.drop_view_if_exists(cr, 'stock_move_model')
+        cr.execute("""
+            CREATE OR REPLACE VIEW stock_move_model AS (
+            SELECT
+			row_number() OVER () as id,
+			a1.id as aid,
+			a1.origin,
+			a1.product_uos_qty,
+			a1.create_date,
+			a1.move_dest_id,
+			a1.product_uom,
+			a1.price_unit,
+			a1.product_uom_qty,
+			a1.company_id,
+			a1.date,
+			a1.product_qty,
+			a1.product_uos,
+			a3.complete_name as location1, --location_id
+			a1.priority,
+			a1.picking_type_id,
+			a1.partner_id,
+			a1.note,
+			a1.state,
+			a1.origin_returned_move_id,
+			a1.product_packaging,
+			a1.date_expected,
+			a1.procurement_id,
+			a1.name,
+			a1.create_uid,
+			a1.warehouse_id,
+			a1.inventory_id,
+			a1.partially_available,
+			a1.propagate,
+			a1.restrict_partner_id,
+			a1.procure_method,
+			a1.write_uid,
+			a1.restrict_lot_id,
+			a1.group_id,
+			a2.name_template as product, --product_id,
+			a1.split_from,
+			a1.picking_id,
+			a4.complete_name as location2, --location_dest_id,
+			a1.write_date,
+			a1.push_rule_id,
+			a1.rule_id,
+			a1.invoice_state,
+			a1.purchase_line_id,
+			a1.price_unit*a1.product_qty as inventory_value
+			FROM stock_move a1
+			JOIN product_product a2 on a1.product_id=a2.id
+			JOIN stock_location a3 on a1.location_id=a3.id
+			JOIN stock_location a4 on a1.location_dest_id=a4.id
+            )
+        """)
+
+stock_move_model()
+
+class stock_quant_model(osv.osv):
+    _name = "stock.quant.model"
+    _description = "Stock Quant Report"
     _auto = False
     _columns = {
         'id': fields.integer('id', readonly=True),
@@ -64,16 +141,14 @@ class stock_report_model(osv.osv):
         'cost': fields.float('Cost', readonly=True),
         'name_template': fields.char('Product', readonly=True),
         'current_location': fields.char('Current', readonly=True),
-        'origin_location': fields.char('Origin', readonly=True),
-        'dest_location': fields.char('Destination', readonly=True),
         'inventory_value': fields.float('Inventory Value', readonly=True)
     }
     _order = 'create_date asc, in_date asc'
 
     def init(self, cr):
-        tools.sql.drop_view_if_exists(cr, 'stock_report_model')
+        tools.sql.drop_view_if_exists(cr, 'stock_quant_model')
         cr.execute("""
-            CREATE OR REPLACE VIEW stock_report_model AS (
+            CREATE OR REPLACE VIEW stock_quant_model AS (
             SELECT
 			row_number() OVER () as id,
 			a1.create_date,
@@ -83,17 +158,11 @@ class stock_report_model(osv.osv):
 			a1.cost,
 			a4.name_template,
 			a5.complete_name as current_location,
-			a6.complete_name as origin_location,
-			a7.complete_name as dest_location,
 			(a1.cost*a1.qty) as inventory_value
 			FROM stock_quant a1
-			JOIN stock_quant_move_rel a2 on a1.id=a2.quant_id
-			JOIN stock_move a3 on a2.move_id=a3.id
 			JOIN product_product a4 on a1.product_id=a4.id
 			JOIN stock_location a5 on a1.location_id=a5.id
-            join stock_location a6 on a3.location_id=a6.id
-            join stock_location a7 on a3.location_dest_id=a7.id
             )
         """)
 
-stock_report_model()
+stock_quant_model()
