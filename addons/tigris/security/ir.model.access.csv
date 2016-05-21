@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_tigris_tigris,tigris.tigris,model_tigris_tigris,,1,0,0,0
+access_tigris_pos,tigris.pos,model_pos_report_model,base.group_sale_manager,1,0,0,0
+access_tigris_stock_move,tigris.stock.move.model,model_stock_move_model,base.group_sale_manager,1,0,0,0
+access_tigris_stock_quant,tigris.stock.quant.model,model_stock_quant_model,base.group_sale_manager,1,0,0,0
