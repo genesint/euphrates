@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 10:25+0000\n"
-"PO-Revision-Date: 2015-09-30 09:24+0000\n"
+"PO-Revision-Date: 2016-12-23 18:20+0000\n"
 "Last-Translator: Martin Trigaux\n"
 "Language-Team: Lithuanian (http://www.transifex.com/odoo/odoo-9/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_setup.action_sale_config
 #: model:ir.ui.view,arch_db:base_setup.view_sale_config_settings
 msgid "Configure Sales"
-msgstr ""
+msgstr "Konfigūruoti pardavimus"
 
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
@@ -78,7 +78,7 @@ msgstr ""
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
 msgid "Configure your company data"
-msgstr ""
+msgstr "Nustatykite įmonės duomenis"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_create_uid
@@ -104,7 +104,7 @@ msgstr "Pirkėjas"
 #: model:ir.model.fields,field_description:base_setup.field_base_setup_terminology_display_name
 #: model:ir.model.fields,field_description:base_setup.field_sale_config_settings_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Vaizduojamas pavadinimas"
 
 #. module: base_setup
 #: selection:base.setup.terminology,partner:0
@@ -174,7 +174,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_setup.field_base_setup_terminology___last_update
 #: model:ir.model.fields,field_description:base_setup.field_sale_config_settings___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Paskutinį kartą keista"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_write_uid
@@ -252,7 +252,7 @@ msgstr ""
 
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
-msgid "Shared ressources"
+msgid "Shared resources"
 msgstr ""
 
 #. module: base_setup
@@ -326,7 +326,7 @@ msgstr ""
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_base_config_settings
 msgid "base.config.settings"
-msgstr ""
+msgstr "base.config.settings"
 
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_base_setup_terminology

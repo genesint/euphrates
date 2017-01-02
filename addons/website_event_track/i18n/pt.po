@@ -3,13 +3,13 @@
 # * website_event_track
 # 
 # Translators:
-# MMSRS <h_manuela_rodsilva@gmail.com>, 2015
+# Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-18 08:12+0000\n"
-"PO-Revision-Date: 2015-10-21 12:21+0000\n"
+"PO-Revision-Date: 2016-11-03 16:37+0000\n"
 "Last-Translator: Martin Trigaux\n"
 "Language-Team: Portuguese (http://www.transifex.com/odoo/odoo-9/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -40,12 +40,12 @@ msgstr ""
 msgid ""
 "<br/>\n"
 "                            <b>Location</b><br/>"
-msgstr ""
+msgstr "<br/>\n                            <b>Localização</b><br/>"
 
 #. module: website_event_track
 #: model:ir.ui.view,arch_db:website_event_track.agenda
 msgid "<span id=\"search_number\">0</span> Found"
-msgstr ""
+msgstr "<span id=\"search_number\">0</span> Encontrado"
 
 #. module: website_event_track
 #: model:ir.ui.view,arch_db:website_event_track.event_track_proposal
@@ -57,7 +57,7 @@ msgstr ""
 #. module: website_event_track
 #: model:ir.ui.view,arch_db:website_event_track.event_track_social
 msgid "<strong>Participate on Twitter</strong>"
-msgstr ""
+msgstr "<strong>Participar no Twitter</strong>"
 
 #. module: website_event_track
 #: model:ir.ui.view,arch_db:website_event_track.event_track_proposal
@@ -76,7 +76,7 @@ msgstr "A explicação técnica de Odoo como um CMS e uma plataforma de comérci
 #. module: website_event_track
 #: model:ir.ui.view,arch_db:website_event_track.track_view
 msgid "About The Author"
-msgstr ""
+msgstr "Sobre o Autor"
 
 #. module: website_event_track
 #: model:ir.model.fields,field_description:website_event_track.field_event_track_message_needaction
@@ -404,11 +404,6 @@ msgid "Image"
 msgstr "Imagem"
 
 #. module: website_event_track
-#: model:ir.ui.view,arch_db:website_event_track.view_event_track_search
-msgid "Important Messages"
-msgstr "Mensagens Importantes"
-
-#. module: website_event_track
 #: model:ir.ui.view,arch_db:website_event_track.event_track_proposal
 msgid "Introduction"
 msgstr "Introdução"
@@ -416,7 +411,7 @@ msgstr "Introdução"
 #. module: website_event_track
 #: model:ir.model.fields,field_description:website_event_track.field_event_track_message_is_follower
 msgid "Is Follower"
-msgstr "É um seguidor"
+msgstr "É um Seguidor"
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track23
@@ -502,7 +497,7 @@ msgid ""
 "Medium-sized image of this contact. It is automatically resized as a "
 "128x128px image, with aspect ratio preserved. Use this field in form views "
 "or some kanban views."
-msgstr ""
+msgstr "Imagem em pequeno formato para este contacto. É automaticamente redimensionada para 64x64px com o racio do aspect preservado. Utilize este campo onde quer que uma imagem pequena seja necessária."
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track25
@@ -585,7 +580,7 @@ msgstr "Número de mensagens que requerem uma ação"
 #. module: website_event_track
 #: model:ir.model.fields,help:website_event_track.field_event_track_message_unread_counter
 msgid "Number of unread messages"
-msgstr "Número de mensagens por ler"
+msgstr "Número de mensagens não lidas"
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track15
@@ -798,6 +793,11 @@ msgid "Submit Proposal"
 msgstr "Submeter Proposta"
 
 #. module: website_event_track
+#: model:web.tip,description:website_event_track.event_track_tip_1
+msgid "Switch to the calendar view to see the availability of each room."
+msgstr ""
+
+#. module: website_event_track
 #: model:ir.model.fields,field_description:website_event_track.field_event_track_tag_name
 msgid "Tag"
 msgstr "Etiqueta"
@@ -855,7 +855,7 @@ msgstr "A Arte de Fazer uma Demo Odoo."
 #. module: website_event_track
 #: model:ir.model.fields,help:website_event_track.field_event_track_website_url
 msgid "The full URL to access the document through the website."
-msgstr ""
+msgstr "O endereço URL completo para aceder ao documento através do website."
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track29
@@ -948,6 +948,7 @@ msgstr ""
 
 #. module: website_event_track
 #: model:ir.model.fields,field_description:website_event_track.field_event_track_message_unread
+#: model:ir.ui.view,arch_db:website_event_track.view_event_track_search
 msgid "Unread Messages"
 msgstr "Mensagens por ler"
 

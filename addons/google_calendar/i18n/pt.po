@@ -3,12 +3,13 @@
 # * google_calendar
 # 
 # Translators:
+# Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:40+0000\n"
-"PO-Revision-Date: 2015-10-20 14:22+0000\n"
+"POT-Creation-Date: 2016-09-22 13:16+0000\n"
+"PO-Revision-Date: 2016-11-03 16:07+0000\n"
 "Last-Translator: Martin Trigaux\n"
 "Language-Team: Portuguese (http://www.transifex.com/odoo/odoo-9/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +23,7 @@ msgstr ""
 msgid ""
 "<br/> You can now click on <b>'Create Client ID'</b>\n"
 "                                    <br/><br/>"
-msgstr ""
+msgstr "<br/> Pode clicar agora em <b>'Criar Id. do Cliente'</b>\n                                    <br/><br/>"
 
 #. module: google_calendar
 #: model:ir.ui.view,arch_db:google_calendar.view_calendar_config_settings
@@ -181,6 +182,15 @@ msgid "Google ID should be unique!"
 msgstr "ID google deve ser único!"
 
 #. module: google_calendar
+#: code:addons/google_calendar/google_calendar.py:718
+#, python-format
+msgid ""
+"Google is lost... the next synchro will be a full synchro. \n"
+"\n"
+" %s"
+msgstr ""
+
+#. module: google_calendar
 #: model:ir.model.fields,field_description:google_calendar.field_google_calendar_id
 msgid "ID"
 msgstr "ID"
@@ -264,7 +274,7 @@ msgstr "Retornar ao Topo"
 #. module: google_calendar
 #: model:ir.model.fields,field_description:google_calendar.field_base_config_settings_google_cal_sync
 msgid "Show Tutorial"
-msgstr "Mostrar Tuturial"
+msgstr "Mostrar Tutorial"
 
 #. module: google_calendar
 #. openerp-web
@@ -324,6 +334,12 @@ msgstr "Utilizadores"
 #, python-format
 msgid "You will be redirected to Google to authorize access to your calendar!"
 msgstr "Você será redirecionado para o Google para autorizar o acesso à sua agenda!"
+
+#. module: google_calendar
+#: code:addons/google_calendar/google_calendar.py:298
+#, python-format
+msgid "Your token is invalid or has been revoked !"
+msgstr ""
 
 #. module: google_calendar
 #: model:ir.model,name:google_calendar.model_base_config_settings

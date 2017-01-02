@@ -280,7 +280,7 @@ var ListView = View.extend( /** @lends instance.web.ListView# */ {
         if (!this.$buttons) {
             this.$buttons = $(QWeb.render("ListView.buttons", {'widget': this}));
 
-            this.$buttons.find('.o_list_button_add').click(this.proxy('do_add_record'));
+            this.$buttons.on('click', '.o_list_button_add', this.proxy('do_add_record'));
 
             $node = $node || this.options.$buttons;
             if ($node) {
@@ -560,11 +560,12 @@ var ListView = View.extend( /** @lends instance.web.ListView# */ {
                 self.records.remove(record);
                 return;
             }
-            _.each(values, function (value, key) {
+            // _.each is broken if a field "length" is present
+            for (var key in values) {
                 if (fields[key] && fields[key].type === 'many2many')
                     record.set(key + '__display', false, {silent: true});
-                record.set(key, value, {silent: true});            
-            });
+                record.set(key, values[key], {silent: true});
+            }
             record.trigger('change', record);
 
             /* When a record is reloaded, there is a rendering lag because of the addition/suppression of 
@@ -635,16 +636,21 @@ var ListView = View.extend( /** @lends instance.web.ListView# */ {
             _(ids).each(function (id) {
                 self.records.remove(self.records.get(id));
             });
-            if (self.records.length === 0 && self.dataset.size() > 0) {
-                //Trigger previous manually to navigate to previous page, 
-                //If all records are deleted on current page.
-                self.$pager.find('ul li:first a').trigger('click');
-            } else if (self.dataset.size() == self._limit) {
-                //Reload listview to update current page with next page records 
-                //because pager going to be hidden if dataset.size == limit
-                self.reload();
+            // Hide the table if there is no more record in the dataset
+            if (self.dataset.size() === 0) {
+                self.no_result();
             } else {
-                self.configure_pager(self.dataset);
+                if (self.records.length === 0 && self.dataset.size() > 0) {
+                    //Trigger previous manually to navigate to previous page,
+                    //If all records are deleted on current page.
+                    self.$pager.find('ul li:first a').trigger('click');
+                } else if (self.dataset.size() === self._limit) {
+                    //Reload listview to update current page with next page records
+                    //because pager going to be hidden if dataset.size == limit
+                    self.reload();
+                } else {
+                    self.configure_pager(self.dataset);
+                }
             }
             self.compute_aggregates();
         });
@@ -1068,6 +1074,10 @@ ListView.List = Class.extend( /** @lends instance.web.ListView.List# */{
                 e.stopPropagation();
                 var $row = $(e.target).closest('tr');
                 $(self).trigger('deleted', [[self.row_id($row)]]);
+                // IE Edge go crazy when we use confirm dialog and remove the focused element
+                if(document.hasFocus && !document.hasFocus()) {
+                    $('<input />').appendTo('body').focus().remove();
+                }
             })
             .delegate('td.oe_list_field_cell button', 'click', function (e) {
                 e.stopPropagation();
@@ -1168,14 +1178,14 @@ ListView.List = Class.extend( /** @lends instance.web.ListView.List# */{
                     ids = value;
                 }
                 new Model(column.relation)
-                    .call('name_get', [ids, this.dataset.context]).done(function (names) {
+                    .call('name_get', [ids, this.dataset.get_context()]).done(function (names) {
                         // FIXME: nth horrible hack in this poor listview
                         record.set(column.id + '__display',
                                    _(names).pluck(1).join(', '));
                         record.set(column.id, ids);
                     });
-                // temp empty value
-                record.set(column.id, false);
+                // temporary empty display name
+                record.set(column.id + '__display', false);
             }
         }
         return column.format(record.toForm().data, {
@@ -1814,7 +1824,6 @@ var Column = Class.extend({
             id: id,
             tag: tag
         });
-
         this.modifiers = attrs.modifiers ? JSON.parse(attrs.modifiers) : {};
         delete attrs.modifiers;
         _.extend(this, attrs);
@@ -1841,10 +1850,14 @@ var Column = Class.extend({
         if (this.type !== 'integer' && this.type !== 'float' && this.type !== 'monetary') {
             return {};
         }
-        var aggregation_func = this['group_operator'] || 'sum';
-        if (!(aggregation_func in this)) {
+
+        var aggregation_func = (this.sum && 'sum') || (this.avg && 'avg') ||
+                               (this.max && 'max') || (this.min && 'min');
+
+        if (!aggregation_func) {
             return {};
         }
+
         var C = function (fn, label) {
             this['function'] = fn;
             this.label = label;
@@ -1892,6 +1905,7 @@ var Column = Class.extend({
             row_data[this.id].value, this, options.value_if_empty));
     }
 });
+ListView.Column = Column;
 
 var MetaColumn = Column.extend({
     meta: true,

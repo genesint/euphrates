@@ -18,13 +18,13 @@ class Followers(models.Model):
     _description = 'Document Followers'
 
     res_model = fields.Char(
-        'Related Document Model', required=True, select=1, help='Model of the followed resource')
+        'Related Document Model', required=True, index=True, help='Model of the followed resource')
     res_id = fields.Integer(
-        'Related Document ID', select=1, help='Id of the followed resource')
+        'Related Document ID', index=True, help='Id of the followed resource')
     partner_id = fields.Many2one(
-        'res.partner', string='Related Partner', ondelete='cascade', select=1)
+        'res.partner', string='Related Partner', ondelete='cascade', index=True)
     channel_id = fields.Many2one(
-        'mail.channel', string='Listener', ondelete='cascade', select=1)
+        'mail.channel', string='Listener', ondelete='cascade', index=True)
     subtype_ids = fields.Many2many(
         'mail.message.subtype', string='Subtype',
         help="Message subtypes followed, meaning subtypes that will be pushed onto the user's Wall.")
@@ -60,11 +60,16 @@ class Followers(models.Model):
         default_subtypes = self.env['mail.message.subtype'].search([
             ('default', '=', True),
             '|', ('res_model', '=', res_model), ('res_model', '=', False)])
+        external_default_subtypes = default_subtypes.filtered(lambda subtype: not subtype.internal)
 
         if force_mode:
+            employee_pids = self.env['res.users'].sudo().search([('partner_id', 'in', partner_data.keys()), ('share', '=', False)]).mapped('partner_id').ids
             for pid, data in partner_data.iteritems():
                 if not data:
-                    partner_data[pid] = default_subtypes.ids
+                    if pid not in employee_pids:
+                        partner_data[pid] = external_default_subtypes.ids
+                    else:
+                        partner_data[pid] = default_subtypes.ids
             for cid, data in channel_data.iteritems():
                 if not data:
                     channel_data[cid] = default_subtypes.ids

@@ -3,14 +3,17 @@
 # * website_blog
 # 
 # Translators:
-# Goutoudis Kostas <goutoudis@gmail.com>, 2015
+# Kostas Goutoudis <goutoudis@gmail.com>, 2015-2016
+# Kostas Goutoudis <goutoudis@gmail.com>, 2016
+# Martin Trigaux, 2016
+# Γιώργος Μηντζιλώνης <logo13123@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-18 08:12+0000\n"
-"PO-Revision-Date: 2015-10-22 01:17+0000\n"
-"Last-Translator: Goutoudis Kostas <goutoudis@gmail.com>\n"
+"PO-Revision-Date: 2016-11-15 14:50+0000\n"
+"Last-Translator: Kostas Goutoudis <goutoudis@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/odoo/odoo-9/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,7 +133,7 @@ msgid ""
 "        </section>\n"
 "    </div>\n"
 "\n"
-msgstr ""
+msgstr "<div class=\"container\">\n<section class=\"mt16 mb16 readable\">\n<iframe width=\"100%\" height=\"250\" src=\"http://www.youtube.com/embed/EkbBFmIWoTE\" frameborder=\"0\" allowfullscreen></iframe>\n<p data-chatter-id=\"counter_52500/div/section\">\nΤα email είναι άκυρα.\n</p><p data-chatter-id=\"counter_15339/div/section\">\nΤα Email με κάνουν να σπαταλάω το χρόνο μου. Αλλά τα χρειάζομαι.\nΔεδομένης της σημασίας ότι τα email έχουν εισέλθει στην ζωές μας,\nείναι απίστευτο ότι είναι ακόμα μία από τις \nπεριοχές λογισμικού που δεν εμπλάκηκαν στα τελευταία 20 χρόνια!\n</p><p data-chatter-id=\"counter_98391/div/section\">\nΤο να διαβάζω τα εισερχόμενα μου είναι η πιο μη παραγωγική εργασία που κάνω\nσε καθημερινή βάση. Πρέπει να δαπανήσω μια ολόκληρη ώρα τη \nμέρα για να επεξεργαστώ τα email μου. Όλα τα άχρηστα ρέουν στον\nίδιο φάκελο: ανεπιθύμητη αλληλογραφία, πληροφορία που δεν έχει σημασία,\nσημειωμένες απαντήσεις σημειωμένων απαντήσεων, κτλ. Στο τέλος\nτης ώρας, μόνο 10 email ζήτησαν πραγματικά μία\nαπάντηση από εμένα. Με ένα καλό εργαλείο, θα μπορούσα να είχα τελειώσει\nτη δουλεία μου σε 10 λεπτά.\n</p>\n</section>\n<section class=\"mt16 mb16 readable\">\n<p data-chatter-id=\"counter_99844/div/section\">\nΣτο Odoo, κατασκευάζουμε εργαλεία για να φέρουμε την παραγωγικότητα στις\nεπιχειρήσεις. Όπως τα email και η πληροφορία ρέουν είναι η \nμέγιστη σπατάλη χρόνου στις εταιρίες, πρέπει να το διορθώσουμε\nαυτό.\n</p><p data-chatter-id=\"counter_72514/div/section\">\nΓια να διαχωρίσεις τα emails, χρειάζεσαι περισσότερα από μια ακόμα απλή διεπαφή\nχρήστη. Χρειάζεται να ξανασκεφτούμε ολόκληρη την ροή επικοινωνίας.\n</p>\n<h3>Ο Μηχανισμός Επικοινωνίας του Odoo</h3>\n<p data-chatter-id=\"counter_44333/div/section\">\nΕδώ είναι οι ιδέες πίσω από τα εργαλεία επικοινωνίας του Odoo.\n</p>\n<ul>\n<li>\nΕτοιμάστε τις εργασίες σας: τα εισερχόμενα σας είναι μια\nλίστα εργασιών. Πρέπει να είστε σε θέσει να επεξεργαστείτε (όχι μόνο να\nδιαβάσετε)τα εισερχόμενα σας και εύκολα να σημειώσετε μηνύματα για μελλοντικές \nενέργειες. Κάθε φάκελος εισερχομένων θα πρέπει να είναι κενός ύστερα από\nεπεξεργασία: όχι περισσότερη υπερφορτωμένη πληροφορία.\n<img class=\"img-responsive\" src=\"/website_blog/static/src/img/mail-sc-00.png\">\n</li><li>\nΚρατήστε τον έλεγχο από ότι θέλετε να λαμβάνετε ή να μην\nλαμβάνετε. Οι άνθρωποι δεν θα έπρεπε ποτέ να λαμβάνουν ανεπιθύμητη αλληλογραφία. \nΘα πρέπει να παρακολουθήσετε/καταργήσετε την παρακολούθηση κάθε είδους πληροφορία σε ένα μόνο\nπάτημα.\n</li><li>\nΗ παραγωγικότητα είναι κλειδί: η έξυπνη διεπαφή χρήστη \nδεν απαιτεί να πατήστε σε κάθε μήνυμα\nγια να διαβάσετε ένα νήμα. Διαβάζοντας ένα ολόκληρο νήμα, απαντώντας,\nεπισυνάπτοντας έγγραφα είναι αρκετά γρήγορο.\n<img class=\"img-responsive\" src=\"/website_blog/static/src/img/mail-sc-03.png\">\n</li><li>\nΈνα μείγμα από σπρώξε-τράβα: Σήμερα, οι άνθρωποι\nείναι θύματα σε ότι οι άλλοι αποφασίζουν να στείλουν σε αυτούς.\nΤο Odoo διαφοροποιείται.\n<ul>\n<li>\nΜηνύματα \"για πληροφορίες\":\nμπορείς να τους προσελκύσεις όταν χρειάζεσαι μερικές συγκεκριμένες \nπληροφορίες, δεν απαιτούνται να διαβάζονται\nκάθε μέρα. Λαμβάνεις μόνο ότι αποφάσισες\nνα ακολουθήσεις. Αυτό αντιστοιχεί στο 90% τον καθημερινών σου email. Χρησιμοποίησε τον \"Σε:εμένα\" κατάλογο\nγια αυτό.\n</li><li>\nΜηνύματα \"για δράση\": αυτοί\nαπαιτούν την άμεση προσοχή σας και θα πρέπει\nγια να τα επεξεργαστεί. Αυτό αντιπροσωπεύει το 10%\nτων καθημερινών emails σας. Χρησιμοποιήστε το \"Προς: me\" μενού\nγια αυτά.\n</li>\n</ul>\n</li><li>\nΕπικεντρώσου στο περιεχόμενο: Τα πάντα είναι\nβγαλμένα για να δώσεις έμφαση στο πραγματικό μήνυμα. Όχι περισσότερες\nυποδοχές καλωσορίσματος, χαιρετισμοί, υπογραφές και νόμιμες\nσημειώσεις. Προτυποποιούμε την διάταξη του κάθε μηνύματος.\n(οι υπογραφές είναι στο προφίλ κάθε επαφής, όχι σε\nκάθε μήνυμα.)\n</li><li>\nΦάκελοι και λίστες αλληλογραφίας είναι θαυμάσια εργαλεία αλλά αρκετά\nπολύπλοκα σε παραδοσιακούς πελάτες αλληλογραφίας. Στο Odoo, μια ομάδα από επαφές που μοιράζονται μια συζήτηση μπορεί να\nδημιουργηθεί με ένα πάτημα. Κάθε ομάδα θα πρέπει να έχει τη\nδικιά της διεύθυνση email.\n</li>\n</ul>\n</section>\n</div>\n"
 
 #. module: website_blog
 #: model:blog.post,content:website_blog.blog_post_2
@@ -252,7 +255,7 @@ msgstr "Τροφοδοσία Atom"
 #: model:ir.model.fields,field_description:website_blog.field_blog_post_create_uid
 #: model:ir.ui.view,arch_db:website_blog.view_blog_post_search
 msgid "Author"
-msgstr "Δημιουργός"
+msgstr "Συντάκτης"
 
 #. module: website_blog
 #: model:ir.model.fields,field_description:website_blog.field_blog_post_author_avatar
@@ -306,7 +309,7 @@ msgstr "Τίτλος ανάρτησης ιστολογίου"
 #: model:ir.ui.menu,name:website_blog.menu_page
 #: model:ir.ui.view,arch_db:website_blog.view_blog_post_list
 msgid "Blog Posts"
-msgstr "Ανάρτησεις ιστολογίου"
+msgstr "Αναρτήσεις ιστολογίου"
 
 #. module: website_blog
 #: model:ir.model.fields,field_description:website_blog.field_blog_blog_subtitle
@@ -341,7 +344,7 @@ msgstr "Μπλε"
 #. module: website_blog
 #: model:blog.post,subtitle:website_blog.blog_post_2
 msgid "Building your company's website and selling your products online easy."
-msgstr "Φτιάξτε την ιστοσελίδα της εταιρείας σας και πουλήστε τα προϊόντα σας online εύκολα."
+msgstr "Φτιάξτε τον ιστότοπο της εταιρείας σας και πουλήστε τα προϊόντα σας online εύκολα."
 
 #. module: website_blog
 #. openerp-web
@@ -423,7 +426,7 @@ msgstr "Κάντε κλικ για να δημιουργήσετε μια νέα
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:124
 #, python-format
 msgid "Close Tutorial"
-msgstr "Κλείσιμο Οδηγού βοήθειας"
+msgstr "Κλείσιμο Εκμάθησης"
 
 #. module: website_blog
 #: model:ir.ui.view,arch_db:website_blog.website_blog
@@ -506,7 +509,7 @@ msgstr "Διαδρομή συζήτησης"
 #: model:ir.model.fields,field_description:website_blog.field_blog_post_display_name
 #: model:ir.model.fields,field_description:website_blog.field_blog_tag_display_name
 msgid "Display Name"
-msgstr "Όνομα εμφάνισης"
+msgstr "Εμφάνιση Ονόματος"
 
 #. module: website_blog
 #: model:ir.ui.view,arch_db:website_blog.blog_post_complete
@@ -625,13 +628,13 @@ msgstr "Τελευταία τροποποίηση στις"
 #: model:ir.model.fields,field_description:website_blog.field_blog_blog_write_uid
 #: model:ir.model.fields,field_description:website_blog.field_blog_tag_write_uid
 msgid "Last Updated by"
-msgstr "Τελευταία ενημέρωση από"
+msgstr "Τελευταία Ενημέρωση από"
 
 #. module: website_blog
 #: model:ir.model.fields,field_description:website_blog.field_blog_blog_write_date
 #: model:ir.model.fields,field_description:website_blog.field_blog_tag_write_date
 msgid "Last Updated on"
-msgstr "Τελευταία ενημέρωση στις"
+msgstr "Τελευταία Ενημέρωση στις"
 
 #. module: website_blog
 #: model:ir.ui.view,arch_db:website_blog.latest_blogs
@@ -653,7 +656,7 @@ msgstr "Χαμηλή"
 #. module: website_blog
 #: model:ir.ui.view,arch_db:website_blog.website_blog
 msgid "Medium"
-msgstr "Μέτρια"
+msgstr "Μέσο"
 
 #. module: website_blog
 #: model:ir.model,name:website_blog.model_mail_message
@@ -892,7 +895,7 @@ msgstr "Επιλέξτε αυτή το στοιχείο μενού για να �
 #: code:addons/website_blog/static/src/xml/website_blog.inline.discussion.xml:29
 #, python-format
 msgid "Sign in"
-msgstr "Προσέλευση"
+msgstr "Σύνδεση"
 
 #. module: website_blog
 #: model:ir.ui.view,arch_db:website_blog.website_blog
@@ -911,7 +914,7 @@ msgstr "Skip"
 #: code:addons/website_blog/static/src/js/website.tour.blog.js:19
 #, python-format
 msgid "Start Tutorial"
-msgstr "Έναρξη Οδηγού βοήθειας"
+msgstr "Έναρξη Εκμάθησης"
 
 #. module: website_blog
 #. openerp-web
@@ -999,7 +1002,7 @@ msgid ""
 "This tutorial is over. To discover more features and improve the content of "
 "this page, go to the upper right customize menu. You can also add some cool "
 "content with your text by clicking on 'Insert Blocks' in the edit mode."
-msgstr "Αυτή η εκμάθηση έχει τελειώσει. Για να ανακαλύψετε περισσότερα χαρακτηριστικά και για να βελτιώσετε το περιεχόμενο αυτής της σελίδας, μεταβείτε στο μενού Προσαρμογή που βρίσκετε επάνω δεξιά. Μπορείτε επίσης να προσθέσετε ενδιαφέρον περιεχόμενο με το κείμενό σας, κάνοντας κλικ στο 'Εισαγωγή πλαισίου' από την λειτουργία επεξεργασίας."
+msgstr "Αυτή η εκμάθηση έχει τελειώσει. Για να ανακαλύψετε περισσότερα χαρακτηριστικά και για να βελτιώσετε το περιεχόμενο αυτής της σελίδας, μεταβείτε στο μενού Προσαρμογή που βρίσκετε επάνω δεξιά. Μπορείτε επίσης να προσθέσετε ενδιαφέρον περιεχόμενο με το κείμενό σας, κάνοντας κλικ στο 'Εισαγωγή Πλαισίου' από την λειτουργία επεξεργασίας."
 
 #. module: website_blog
 #: model:ir.model.fields,field_description:website_blog.field_blog_post_name
@@ -1010,7 +1013,7 @@ msgstr "Τίτλος"
 #: model:ir.model.fields,field_description:website_blog.field_blog_blog_message_unread
 #: model:ir.model.fields,field_description:website_blog.field_blog_post_message_unread
 msgid "Unread Messages"
-msgstr "Αδιάβαστα Μυνήματα"
+msgstr "Αδιάβαστα Μηνύματα"
 
 #. module: website_blog
 #: model:ir.model.fields,field_description:website_blog.field_blog_blog_message_unread_counter
@@ -1057,7 +1060,7 @@ msgstr "Ορατό στον Ιστότοπο"
 #. module: website_blog
 #: model:ir.model,name:website_blog.model_website
 msgid "Website"
-msgstr "Ιστοσελίδα"
+msgstr "Ιστότοπος"
 
 #. module: website_blog
 #: model:ir.actions.act_url,name:website_blog.action_open_website
@@ -1133,7 +1136,7 @@ msgstr "Κίτρινο"
 msgid ""
 "You should <strong>add a banner on the top</strong> as it is a frequent landing page for new visitors.\n"
 "                   <span class=\"text-muted\">This box will not be visible to your visitors.</span>"
-msgstr "Θα πρέπει να <strong>προσθέσετε ένα πανό (banner) στην κορυφή</ strong>, δεδομένου ότι είναι μια συχνή σελίδα προορισμού για νέους επισκέπτες.\n<span class=\"text-muted\">Αυτή η θέση δεν θα είναι ορατή στους επισκέπτες σας.</ span>"
+msgstr "Θα πρέπει να <strong>προσθέσετε ένα πανό (banner) στην κορυφή</strong>, δεδομένου ότι είναι μια συχνή σελίδα προορισμού για νέους επισκέπτες.\n<span class=\"text-muted\">Αυτή η θέση δεν θα είναι ορατή στους επισκέπτες σας.</span>"
 
 #. module: website_blog
 #. openerp-web

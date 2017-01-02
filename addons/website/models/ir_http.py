@@ -59,14 +59,14 @@ class ir_http(orm.AbstractModel):
 
     def get_nearest_lang(self, lang):
         # Try to find a similar lang. Eg: fr_BE and fr_FR
-        if lang in request.website.get_languages():
-            return lang
-
-        short = lang.split('_')[0]
+        short = lang.partition('_')[0]
+        short_match = False
         for code, name in request.website.get_languages():
-            if code.startswith(short):
-                return code
-        return False
+            if code == lang:
+                return lang
+            if not short_match and code.startswith(short):
+                short_match = code
+        return short_match
 
     def _geoip_setup_resolver(self):
         if self._geoip_resolver is None:
@@ -132,13 +132,12 @@ class ir_http(orm.AbstractModel):
             langs = [lg[0] for lg in request.website.get_languages()]
             path = request.httprequest.path.split('/')
             if first_pass:
+                is_a_bot = self.is_a_bot()
                 nearest_lang = not func and self.get_nearest_lang(path[1])
                 url_lang = nearest_lang and path[1]
                 preferred_lang = ((cook_lang if cook_lang in langs else False)
-                                  or self.get_nearest_lang(request.lang)
+                                  or (not is_a_bot and self.get_nearest_lang(request.lang))
                                   or request.website.default_lang_code)
-
-                is_a_bot = self.is_a_bot()
 
                 request.lang = request.context['lang'] = nearest_lang or preferred_lang
                 # if lang in url but not the displayed or default language --> change or remove
@@ -158,6 +157,7 @@ class ir_http(orm.AbstractModel):
                     redirect.set_cookie('website_lang', request.lang)
                     return redirect
                 elif url_lang:
+                    request.uid = None
                     path.pop(1)
                     return self.reroute('/'.join(path) or '/')
             if path[1] == request.website.default_lang_code:
@@ -275,7 +275,8 @@ class ir_http(orm.AbstractModel):
                 logger.error("500 Internal Server Error:\n\n%s", values['traceback'])
                 if 'qweb_exception' in values:
                     view = request.registry.get("ir.ui.view")
-                    views = view._views_get(request.cr, request.uid, exception.qweb['template'], request.context)
+                    views = view._views_get(request.cr, request.uid, exception.qweb['template'],
+                                            context=request.context)
                     to_reset = [v for v in views if v.model_data_id.noupdate is True and not v.page]
                     values['views'] = to_reset
             elif code == 403:
@@ -294,6 +295,18 @@ class ir_http(orm.AbstractModel):
             except Exception:
                 html = request.website._render('website.http_error', values)
             return werkzeug.wrappers.Response(html, status=code, content_type='text/html;charset=utf-8')
+
+    def binary_content(self, xmlid=None, model='ir.attachment', id=None, field='datas', unique=False, filename=None, filename_field='datas_fname', download=False, mimetype=None, default_mimetype='application/octet-stream', env=None):
+        env = env or request.env
+        obj = None
+        if xmlid:
+            obj = env.ref(xmlid, False)
+        elif id and model in self.pool:
+            obj = env[model].browse(int(id))
+        if obj and 'website_published' in obj._fields:
+            if env[obj._name].sudo().search([('id', '=', obj.id), ('website_published', '=', True)]):
+                env = env(user=openerp.SUPERUSER_ID)
+        return super(ir_http, self).binary_content(xmlid=xmlid, model=model, id=id, field=field, unique=unique, filename=filename, filename_field=filename_field, download=download, mimetype=mimetype, default_mimetype=default_mimetype, env=env)
 
 class ModelConverter(ir.ir_http.ModelConverter):
     def __init__(self, url_map, model=False, domain='[]'):
@@ -332,6 +345,8 @@ class PageConverter(werkzeug.routing.PathConverter):
         query = query and query.startswith('website.') and query[8:] or query
         if query:
             domain += [('key', 'like', query)]
+        website_id = request.context.get('website_id') or request.registry['website'].search(cr, uid, [], limit=1)[0]
+        domain += ['|', ('website_id', '=', website_id), ('website_id', '=', False)]
 
         views = View.search_read(cr, uid, domain, fields=['key', 'priority', 'write_date'], order='name', context=context)
         for view in views:
@@ -340,7 +355,7 @@ class PageConverter(werkzeug.routing.PathConverter):
             # when we will have an url mapping mechanism, replace this by a rule: page/homepage --> /
             if xid=='homepage': continue
             record = {'loc': xid}
-            if view['priority'] <> 16:
+            if view['priority'] != 16:
                 record['__priority'] = min(round(view['priority'] / 32.0,1), 1)
             if view['write_date']:
                 record['__lastmod'] = view['write_date'][:10]

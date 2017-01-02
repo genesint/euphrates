@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-14 10:27+0000\n"
-"PO-Revision-Date: 2015-09-07 15:53+0000\n"
+"PO-Revision-Date: 2016-10-31 20:14+0000\n"
 "Last-Translator: Martin Trigaux\n"
 "Language-Team: Romanian (http://www.transifex.com/odoo/odoo-9/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_check_printing.field_account_payment_check_amount_in_words
 #: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments_check_amount_in_words
 msgid "Amount in Words"
-msgstr ""
+msgstr "Valoarea în cuvinte"
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
@@ -114,7 +114,7 @@ msgstr "Creat în"
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Afiseaza nume"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_id
@@ -137,7 +137,7 @@ msgstr "Jurnal"
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modificare la"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_write_uid
