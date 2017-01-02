@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 
 from babel.dates import format_datetime, format_date
 
-from openerp import models, api, _, fields
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DF
-from openerp.tools.misc import formatLang
+from odoo import models, api, _, fields
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DF
+from odoo.tools.misc import formatLang
 
 class account_journal(models.Model):
     _inherit = "account.journal"
@@ -117,7 +117,7 @@ class account_journal(models.Model):
         for i in range(0,6):
             if i == 0:
                 query += "("+select_sql_clause+" and date < '"+start_date.strftime(DF)+"')"
-            elif i == 6:
+            elif i == 5:
                 query += " UNION ALL ("+select_sql_clause+" and date >= '"+start_date.strftime(DF)+"')"
             else:
                 next_date = start_date + timedelta(days=7)
@@ -134,22 +134,27 @@ class account_journal(models.Model):
 
     @api.multi
     def get_journal_dashboard_datas(self):
+        currency = self.currency_id or self.company_id.currency_id
         number_to_reconcile = last_balance = account_sum = 0
-        ac_bnk_stmt = []
         title = ''
         number_draft = number_waiting = number_late = sum_draft = sum_waiting = sum_late = 0
         if self.type in ['bank', 'cash']:
             last_bank_stmt = self.env['account.bank.statement'].search([('journal_id', 'in', self.ids)], order="date desc, id desc", limit=1)
             last_balance = last_bank_stmt and last_bank_stmt[0].balance_end or 0
-            ac_bnk_stmt = self.env['account.bank.statement'].search([('journal_id', 'in', self.ids),('state', '=', 'open')])
-            for ac_bnk in ac_bnk_stmt:
-                for line in ac_bnk.line_ids:
-                    if not line.journal_entry_ids:
-                        number_to_reconcile += 1
+            #Get the number of items to reconcile for that bank journal
+            self.env.cr.execute("""SELECT COUNT(DISTINCT(line.id))
+                            FROM account_bank_statement_line AS line
+                            LEFT JOIN account_bank_statement AS st
+                            ON line.statement_id = st.id
+                            WHERE st.journal_id IN %s AND st.state = 'open'
+                            AND not exists (select 1 from account_move_line aml where aml.statement_line_id = line.id)
+                        """, (tuple(self.ids),))
+            number_to_reconcile = self.env.cr.fetchone()[0]
             # optimization to read sum of balance from account_move_line
             account_ids = tuple(filter(None, [self.default_debit_account_id.id, self.default_credit_account_id.id]))
             if account_ids:
-                query = """SELECT sum(balance) FROM account_move_line WHERE account_id in %s;"""
+                amount_field = 'balance' if not self.currency_id else 'amount_currency'
+                query = """SELECT sum(%s) FROM account_move_line WHERE account_id in %%s;""" % (amount_field,)
                 self.env.cr.execute(query, (account_ids,))
                 query_results = self.env.cr.dictfetchall()
                 if query_results and query_results[0].get('sum') != None:
@@ -158,28 +163,36 @@ class account_journal(models.Model):
         elif self.type in ['sale', 'purchase']:
             title = _('Bills to pay') if self.type == 'purchase' else _('Invoices owed to you')
             # optimization to find total and sum of invoice that are in draft, open state
-            query = """SELECT state, count(id) AS count, sum(amount_total) AS total FROM account_invoice WHERE journal_id = %s AND state NOT IN ('paid', 'cancel') GROUP BY state;"""
+            query = """SELECT state, amount_total, currency_id AS currency FROM account_invoice WHERE journal_id = %s AND state NOT IN ('paid', 'cancel');"""
             self.env.cr.execute(query, (self.id,))
             query_results = self.env.cr.dictfetchall()
             today = datetime.today()
-            query = """SELECT count(id) AS count_late, sum(amount_total) AS total FROM account_invoice WHERE journal_id = %s AND date < %s AND state = 'open';"""
+            query = """SELECT amount_total, currency_id AS currency FROM account_invoice WHERE journal_id = %s AND date < %s AND state = 'open';"""
             self.env.cr.execute(query, (self.id, today))
             late_query_results = self.env.cr.dictfetchall()
+            sum_draft = 0.0
+            number_draft = 0
+            number_waiting = 0
             for result in query_results:
+                cur = self.env['res.currency'].browse(result.get('currency'))
                 if result.get('state') in ['draft', 'proforma', 'proforma2']:
-                    number_draft = result.get('count')
-                    sum_draft = result.get('total')
+                    number_draft += 1
+                    sum_draft += cur.compute(result.get('amount_total'), currency)
                 elif result.get('state') == 'open':
-                    number_waiting = result.get('count')
-                    sum_waiting = result.get('total')
-            if late_query_results and late_query_results[0].get('count_late') != None:
-                number_late = late_query_results[0].get('count_late')
-                sum_late = late_query_results[0].get('total')
+                    number_waiting += 1
+                    sum_waiting += cur.compute(result.get('amount_total'), currency)
+            sum_late = 0.0
+            number_late = 0
+            for result in late_query_results:
+                cur = self.env['res.currency'].browse(result.get('currency'))
+                number_late += 1
+                sum_late += cur.compute(result.get('amount_total'), currency)
 
         return {
             'number_to_reconcile': number_to_reconcile,
             'account_balance': formatLang(self.env, account_sum, currency_obj=self.currency_id or self.company_id.currency_id),
             'last_balance': formatLang(self.env, last_balance, currency_obj=self.currency_id or self.company_id.currency_id),
+            'difference': (last_balance-account_sum) and formatLang(self.env, last_balance-account_sum, currency_obj=self.currency_id or self.company_id.currency_id) or False,
             'number_draft': number_draft,
             'number_waiting': number_waiting,
             'number_late': number_late,
@@ -240,11 +253,11 @@ class account_journal(models.Model):
             return {
                 'type': 'ir.actions.client',
                 'tag': 'bank_statement_reconciliation_view',
-                'context': {'statement_ids': bank_stmt.ids},
+                'context': {'statement_ids': bank_stmt.ids, 'company_ids': self.mapped('company_id').ids},
             }
         else:
             # Open reconciliation view for customers/suppliers
-            action_context = {'show_mode_selector': False}
+            action_context = {'show_mode_selector': False, 'company_ids': self.mapped('company_id').ids}
             if self.type == 'sale':
                 action_context.update({'mode': 'customers'})
             elif self.type == 'purchase':
@@ -272,15 +285,18 @@ class account_journal(models.Model):
                 action_name = 'action_move_journal_line'
 
         _journal_invoice_type_map = {
-            'sale': 'out_invoice',
-            'purchase': 'in_invoice',
-            'bank': 'bank',
-            'cash': 'cash',
-            'general': 'general',
+            ('sale', None): 'out_invoice',
+            ('purchase', None): 'in_invoice',
+            ('sale', 'refund'): 'out_refund',
+            ('purchase', 'refund'): 'in_refund',
+            ('bank', None): 'bank',
+            ('cash', None): 'cash',
+            ('general', None): 'general',
         }
-        invoice_type = _journal_invoice_type_map[self.type]
+        invoice_type = _journal_invoice_type_map[(self.type, self._context.get('invoice_type'))]
 
         ctx = self._context.copy()
+        ctx.pop('group_by', None)
         ctx.update({
             'journal_type': self.type,
             'default_journal_id': self.id,
@@ -288,10 +304,9 @@ class account_journal(models.Model):
             'default_type': invoice_type,
             'type': invoice_type
         })
-        ir_model_obj = self.pool['ir.model.data']
-        model, action_id = ir_model_obj.get_object_reference(self._cr, self._uid, 'account', action_name)
-        action = self.pool[model].read(self._cr, self._uid, action_id, context=self._context)
+        [action] = self.env.ref('account.%s' % action_name).read()
         action['context'] = ctx
+        action['domain'] = self._context.get('use_domain', [])
         return action
 
     @api.multi
@@ -313,6 +328,7 @@ class account_journal(models.Model):
             'default_payment_type': payment_type,
             'default_journal_id': self.id
         })
+        ctx.pop('group_by', None)
         action_rec = self.env['ir.model.data'].xmlid_to_object('account.action_account_payments')
         if action_rec:
             action = action_rec.read([])[0]
@@ -328,13 +344,14 @@ class account_journal(models.Model):
         ctx = dict(self.env.context, default_journal_id=self.id)
         if ctx.get('search_default_journal', False):
             ctx.update(search_default_journal_id=self.id)
-        ir_model_obj = self.pool['ir.model.data']
-        model, action_id = ir_model_obj.get_object_reference(self._cr, self._uid, 'account', action_name)
-        action = self.pool[model].read(self._cr, self._uid, action_id, context=self._context)
+        ctx.pop('group_by', None)
+        ir_model_obj = self.env['ir.model.data']
+        model, action_id = ir_model_obj.get_object_reference('account', action_name)
+        [action] = self.env[model].browse(action_id).read()
         action['context'] = ctx
         if ctx.get('use_domain', False):
             action['domain'] = ['|', ('journal_id', '=', self.id), ('journal_id', '=', False)]
-            action['name'] += ' for journal '+self.name
+            action['name'] += ' for journal ' + self.name
         return action
 
     @api.multi

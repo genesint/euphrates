@@ -296,14 +296,19 @@ function human_size (size) {
  *
  * @param {Number} number
  */
-function human_number (number) {
-    var units = _t(",k,M").split(',');
-    var i = 0;
-    while (number >= 1000) {
-        number /= 1000;
-        ++i;
+function human_number (number, decimals) {
+    var decimals = decimals | 0;
+    var number = Math.round(number);
+    var d2 = Math.pow(10, decimals);
+    var val = _t("kMGTPE");
+    var i = val.length-1, s;
+    while( i ) {
+        s = Math.pow(10,i--*3);
+        if( s <= number ) {
+            number = Math.round(number*d2/s)/d2 + val[i];
+        }
     }
-    return parseInt(number) + units[i];
+    return number;
 }
 
 /**
@@ -322,7 +327,16 @@ function round_precision (value, precision) {
     var epsilon_magnitude = Math.log(Math.abs(normalized_value))/Math.log(2);
     var epsilon = Math.pow(2, epsilon_magnitude - 53);
     normalized_value += normalized_value >= 0 ? epsilon : -epsilon;
-    var rounded_value = Math.round(normalized_value);
+
+    /**
+     * Javascript performs strictly the round half up method, which is asymmetric. However, in
+     * Python, the method is symmetric. For example:
+     * - In JS, Math.round(-0.5) is equal to -0.
+     * - In Python, round(-0.5) is equal to -1.
+     * We want to keep the Python behavior for consistency.
+     */
+    var sign = normalized_value < 0 ? -1.0 : 1.0;
+    var rounded_value = sign * Math.round(Math.abs(normalized_value));
     return rounded_value * precision;
 }
 
@@ -402,6 +416,85 @@ var DropMisordered = Class.extend({
     },
 });
 
+var DropPrevious = Class.extend({
+    /**
+     * Registers a new deferred and rejects the previous one
+     * @param {$.Deferred} the new deferred
+     * @returns {$.Promise}
+     */
+    add: function (deferred) {
+        if (this.current_def) { this.current_def.reject(); }
+        var res = $.Deferred();
+        deferred.then(res.resolve, res.reject);
+        this.current_def = res;
+        return res.promise();
+    }
+});
+
+/**
+ * Rejects a deferred as soon as a reference deferred is either resolved or rejected
+ * @param {$.Deferred} [target_def] the deferred to potentially reject
+ * @param {$.Deferred} [reference_def] the reference target
+ * @returns {$.Deferred}
+ */
+function reject_after(target_def, reference_def) {
+    var res = $.Deferred();
+    target_def.then(res.resolve, res.reject);
+    reference_def.always(res.reject);
+    return res.promise();
+}
+
+/**
+ * Returns a deferred resolved after 'wait' milliseconds
+ * @param {int} [wait] the delay in ms
+ * @return {$.Deferred}
+ */
+function delay (wait) {
+    var def = $.Deferred();
+    setTimeout(def.resolve, wait);
+    return def;
+}
+
+function swap(array, elem1, elem2) {
+    var i1 = array.indexOf(elem1);
+    var i2 = array.indexOf(elem2);
+    array[i2] = elem1;
+    array[i1] = elem2;
+}
+
+function toBoolElse (str, elseValues, trueValues, falseValues) {
+    var ret = _.str.toBool(str, trueValues, falseValues);
+    if (_.isUndefined(ret)) {
+        return elseValues;
+    }
+    return ret;
+}
+
+function async_when() {
+    var async = false;
+    var def = $.Deferred();
+    $.when.apply($, arguments).done(function() {
+        var args = arguments;
+        var action = function() {
+            def.resolve.apply(def, args);
+        };
+        if (async)
+            action();
+        else
+            setTimeout(action, 0);
+    }).fail(function() {
+        var args = arguments;
+        var action = function() {
+            def.reject.apply(def, args);
+        };
+        if (async)
+            action();
+        else
+            setTimeout(action, 0);
+    });
+    async = true;
+    return def;
+}
 
 return {
     divmod: divmod,
@@ -428,7 +521,12 @@ return {
     assert: assert,
     xor: xor,
     DropMisordered: DropMisordered,
+    DropPrevious: DropPrevious,
+    reject_after: reject_after,
+    delay: delay,
+    swap: swap,
+    toBoolElse: toBoolElse,
+    async_when: async_when,
 };
 
 });
-

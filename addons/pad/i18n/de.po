@@ -1,20 +1,23 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * pad
-# 
+#
 # Translators:
+# Ralf Hilgenstock <rh@dialoge.info>, 2016
+# Renko Spiekermann <renkosp@gmail.com>, 2016
+# Wolfgang Taferner, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:40+0000\n"
-"PO-Revision-Date: 2015-08-25 10:20+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-08-18 14:07+0000\n"
+"PO-Revision-Date: 2016-01-17 19:17+0000\n"
+"Last-Translator: Ralf Hilgenstock <rh@dialoge.info>\n"
 "Language-Team: German (http://www.transifex.com/odoo/odoo-9/language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: pad
@@ -23,19 +26,9 @@ msgid "Companies"
 msgstr "Unternehmen"
 
 #. module: pad
-#: model:ir.model.fields,field_description:pad.field_pad_common_create_uid
-msgid "Created by"
-msgstr "Angelegt von"
-
-#. module: pad
-#: model:ir.model.fields,field_description:pad.field_pad_common_create_date
-msgid "Created on"
-msgstr "Angelegt am"
-
-#. module: pad
 #: model:ir.model.fields,field_description:pad.field_pad_common_display_name
 msgid "Display Name"
-msgstr "Angezeigter Name"
+msgstr "Anzeigename"
 
 #. module: pad
 #: model:ir.model.fields,help:pad.field_res_company_pad_key
@@ -58,19 +51,9 @@ msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: pad
-#: model:ir.model.fields,field_description:pad.field_pad_common_write_uid
-msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
-
-#. module: pad
-#: model:ir.model.fields,field_description:pad.field_pad_common_write_date
-msgid "Last Updated on"
-msgstr "Zuletzt aktualisiert am"
-
-#. module: pad
 #: model:ir.model.fields,field_description:pad.field_res_company_pad_key
 msgid "Pad Api Key"
-msgstr "Pad Api Schlüssel"
+msgstr "Pad API Schlüssel"
 
 #. module: pad
 #: model:ir.model.fields,field_description:pad.field_res_company_pad_server
@@ -84,6 +67,8 @@ msgid ""
 "Pad creation failed, either there is a problem with your pad server URL or "
 "with your connection."
 msgstr ""
+"Die Pad Erstellung ist fehlgeschlagen, entweder gibt es ein Problem mit der "
+"eingetragenen URL oder mit der Verbindung."
 
 #. module: pad
 #: model:ir.ui.view,arch_db:pad.view_company_form_with_pad
@@ -102,7 +87,7 @@ msgstr "Dieses Pad wird durch die erste Eingabe initialisiert."
 #: code:addons/pad/static/src/js/pad.js:50
 #, python-format
 msgid "Unable to load pad"
-msgstr "Es ist nicht möglich das Pad zu mögen."
+msgstr "Es ist nicht möglich das Pad zu laden"
 
 #. module: pad
 #. openerp-web
@@ -111,7 +96,9 @@ msgstr "Es ist nicht möglich das Pad zu mögen."
 msgid ""
 "You must configure the etherpad through the menu Settings > Companies > "
 "Companies, in the configuration tab of your company."
-msgstr "Sie müssen zuerst Etherpad über das Menü Einstellungen > Unternehmen > Unternehmen im Konfiguration Aktenreiter konfigurieren."
+msgstr ""
+"Sie müssen zuerst Etherpad über das Menü Einstellungen > Unternehmen > "
+"Unternehmen im Konfiguration Aktenreiter konfigurieren."
 
 #. module: pad
 #: model:ir.ui.view,arch_db:pad.view_company_form_with_pad
@@ -121,4 +108,16 @@ msgstr "z.B. beta.primarypad.com"
 #. module: pad
 #: model:ir.model,name:pad.model_pad_common
 msgid "pad.common"
-msgstr ""
+msgstr "pad.common"
+
+#~ msgid "Created by"
+#~ msgstr "Angelegt von"
+
+#~ msgid "Created on"
+#~ msgstr "Angelegt am"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Zuletzt aktualisiert durch"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Zuletzt aktualisiert am"

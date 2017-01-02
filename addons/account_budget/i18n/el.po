@@ -1,73 +1,76 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_budget
-# 
+#
 # Translators:
+# Goutoudis Kostas <goutoudis@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-18 08:11+0000\n"
-"PO-Revision-Date: 2015-10-22 01:17+0000\n"
-"Last-Translator: Martin Trigaux\n"
+"POT-Creation-Date: 2016-08-18 14:07+0000\n"
+"PO-Revision-Date: 2016-03-03 14:18+0000\n"
+"Last-Translator: Goutoudis Kostas <goutoudis@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/odoo/odoo-9/language/el/)\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_budget
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
 msgid "<strong>Analysis from:</strong>"
-msgstr ""
+msgstr "<strong>Ανάλυση από:</strong>"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 msgid "<strong>Analysis from</strong>"
-msgstr ""
+msgstr "<strong>Ανάλυση από</strong>"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 msgid "<strong>Analytic Account</strong>"
-msgstr ""
+msgstr "<strong>Λογαριασμός αναλυτικής</strong>"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_budget
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
 msgid "<strong>Budget:</strong>"
-msgstr ""
+msgstr "<strong>Προϋπολογισμός:</strong>"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_budget
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
 msgid "<strong>Currency:</strong>"
-msgstr ""
+msgstr "<strong>Νόμισμα:</strong>"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 msgid "<strong>Currency</strong>"
-msgstr ""
+msgstr "<strong>Νόμισμα</strong>"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_budget
 msgid "<strong>Printed at:</strong>"
-msgstr ""
+msgstr "<strong>Εκτυπώθηκε στις:</strong>"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 #: model:ir.ui.view,arch_db:account_budget.report_budget
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
 msgid "<strong>Total:</strong>"
-msgstr ""
+msgstr "<strong>Σύνολο:</strong>"
 
 #. module: account_budget
 #: model:ir.actions.act_window,help:account_budget.act_crossovered_budget_view
 msgid ""
 "A budget is a forecast of your company's income and/or expenses\n"
-"                expected for a period in the future. A budget is defined on some\n"
-"                financial accounts and/or analytic accounts (that may represent\n"
+"                expected for a period in the future. A budget is defined on "
+"some\n"
+"                financial accounts and/or analytic accounts (that may "
+"represent\n"
 "                projects, departments, categories of products, etc.)"
 msgstr ""
 
@@ -85,7 +88,7 @@ msgstr ""
 #: model:ir.model,name:account_budget.model_account_budget_analytic
 #: model:ir.model,name:account_budget.model_account_budget_report
 msgid "Account Budget report for analytic account"
-msgstr ""
+msgstr "Έκθεση προϋπολογισμού για αναλυτική λογιστική"
 
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_account_budget_post_account_ids
@@ -96,12 +99,7 @@ msgstr "Λογαριασμοί"
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_lines_percentage
 msgid "Achievement"
-msgstr ""
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_needaction
-msgid "Action Needed"
-msgstr "Απαιτείται ενέργεια"
+msgstr "Επίτευγμα"
 
 #. module: account_budget
 #: model:ir.model,name:account_budget.model_account_analytic_account
@@ -112,7 +110,7 @@ msgstr "Αναλυτική Λογαριασμού"
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 msgid "Analytic Budget"
-msgstr ""
+msgstr "Προϋπολογισμός Αναλυτικής"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.crossovered_budget_view_form
@@ -190,8 +188,10 @@ msgstr "Προϋπολογισμοί"
 msgid ""
 "By keeping track of where your money goes, you may be less\n"
 "                likely to overspend, and more likely to meet your financial\n"
-"                goals. Forecast a budget by detailing the expected revenue per\n"
-"                analytic account and monitor its evolution based on the actuals\n"
+"                goals. Forecast a budget by detailing the expected revenue "
+"per\n"
+"                analytic account and monitor its evolution based on the "
+"actuals\n"
 "                realised during that period."
 msgstr ""
 
@@ -206,7 +206,7 @@ msgstr "Ακύρωση"
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.crossovered_budget_view_form
 msgid "Cancel Budget"
-msgstr ""
+msgstr "Ακύρωση Προϋπολογισμού"
 
 #. module: account_budget
 #: selection:crossovered.budget,state:0
@@ -258,11 +258,6 @@ msgid "Created on"
 msgstr "Δημιουργήθηκε στις"
 
 #. module: account_budget
-#: model:ir.model.fields,help:account_budget.field_crossovered_budget_message_last_post
-msgid "Date of the last message posted on the record."
-msgstr "Ημερομηνία του τελευταίου μηνύματος "
-
-#. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 #: model:ir.ui.view,arch_db:account_budget.report_budget
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
@@ -281,7 +276,7 @@ msgstr "Περιγραφή"
 #: model:ir.model.fields,field_description:account_budget.field_report_account_budget_report_budget_display_name
 #: model:ir.model.fields,field_description:account_budget.field_report_account_budget_report_crossoveredbudget_display_name
 msgid "Display Name"
-msgstr "Όνομα εμφάνισης"
+msgstr "Εμφάνιση Ονόματος"
 
 #. module: account_budget
 #: selection:crossovered.budget,state:0
@@ -293,12 +288,12 @@ msgstr "Ολοκληρωμένο"
 #: selection:crossovered.budget,state:0
 #: model:ir.ui.view,arch_db:account_budget.view_crossovered_budget_search
 msgid "Draft"
-msgstr "Προσωρινό"
+msgstr "Πρόχειρο"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.view_crossovered_budget_search
 msgid "Draft Budgets"
-msgstr ""
+msgstr "Πρόχειροι Προϋπολογισμοί"
 
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_date_to
@@ -315,21 +310,6 @@ msgid "End of period"
 msgstr "Τέλος περιόδου"
 
 #. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_follower_ids
-msgid "Followers"
-msgstr "Ακόλουθοι"
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Ακόλουθοι (Κανάλια)"
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_partner_ids
-msgid "Followers (Partners)"
-msgstr "Ακόλουθοι (Συνεργάτες)"
-
-#. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_account_budget_analytic_id
 #: model:ir.model.fields,field_description:account_budget.field_account_budget_crossvered_report_id
 #: model:ir.model.fields,field_description:account_budget.field_account_budget_crossvered_summary_report_id
@@ -342,26 +322,6 @@ msgstr "Ακόλουθοι (Συνεργάτες)"
 #: model:ir.model.fields,field_description:account_budget.field_report_account_budget_report_crossoveredbudget_id
 msgid "ID"
 msgstr "ID"
-
-#. module: account_budget
-#: model:ir.model.fields,help:account_budget.field_crossovered_budget_message_unread
-msgid "If checked new messages require your attention."
-msgstr "Εάν επιλεγεί τα νέα μηνύματα χρειάζονται την προσοχή σας"
-
-#. module: account_budget
-#: model:ir.model.fields,help:account_budget.field_crossovered_budget_message_needaction
-msgid "If checked, new messages require your attention."
-msgstr "Εάν επιλεγεί τα νέα μηνύματα χρειάζονται την προσοχή σας."
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_is_follower
-msgid "Is Follower"
-msgstr "Είναι Ακόλουθος"
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_last_post
-msgid "Last Message Date"
-msgstr "Τελευταία ημερομηνία μηνύματος"
 
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_account_budget_analytic___last_update
@@ -386,7 +346,7 @@ msgstr "Τελευταία αλλαγή στις"
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_lines_write_uid
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_write_uid
 msgid "Last Updated by"
-msgstr "Τελευταία ενημέρωση από"
+msgstr "Τελευταία Ενημέρωση από"
 
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_account_budget_analytic_write_date
@@ -397,17 +357,7 @@ msgstr "Τελευταία ενημέρωση από"
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_lines_write_date
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_write_date
 msgid "Last Updated on"
-msgstr "Τελευταία ενημέρωση στις"
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_ids
-msgid "Messages"
-msgstr "Μηνύματα"
-
-#. module: account_budget
-#: model:ir.model.fields,help:account_budget.field_crossovered_budget_message_ids
-msgid "Messages and communication history"
-msgstr "Μηνύματα και ιστορικό επικοινωνίας"
+msgstr "Τελευταία Ενημέρωση στις"
 
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_account_budget_post_name
@@ -415,24 +365,9 @@ msgid "Name"
 msgstr "Όνομα"
 
 #. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_needaction_counter
-msgid "Number of Actions"
-msgstr "Αριθμός ενεργειών"
-
-#. module: account_budget
-#: model:ir.model.fields,help:account_budget.field_crossovered_budget_message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Πλήθος μηνυμάτων που απαιτούν ενέργεια"
-
-#. module: account_budget
-#: model:ir.model.fields,help:account_budget.field_crossovered_budget_message_unread_counter
-msgid "Number of unread messages"
-msgstr "Πλήθος μη αναγνωσμένων μηνυμάτων"
-
-#. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_lines_paid_date
 msgid "Paid Date"
-msgstr "Ημερομηνία Πληρωμής"
+msgstr "Ημερομηνία Εξόφλησης"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
@@ -457,7 +392,7 @@ msgstr "Μελετημένο Ποσό"
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
 msgid "Planned Amt"
-msgstr ""
+msgstr "Προγραμματισμένο Ποσ."
 
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_lines_practical_amount
@@ -471,7 +406,7 @@ msgstr "Πρακτικό Ποσό"
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
 msgid "Practical Amt"
-msgstr ""
+msgstr "Πρακτικό Ποσ."
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.account_budget_analytic_view
@@ -534,7 +469,7 @@ msgstr "Κατάσταση"
 #: code:addons/account_budget/account_budget.py:104
 #, python-format
 msgid "The Budget '%s' has no accounts!"
-msgstr ""
+msgstr "Ο Προϋπολογισμός '%s' δεν έχει λογαριασμούς!"
 
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_lines_theoritical_amount
@@ -547,7 +482,7 @@ msgstr "Θεωρητικό Ποσό"
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
 msgid "Theoretical Amt"
-msgstr ""
+msgstr "Θεωρητικό Ποσ."
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.view_account_analytic_account_form_inherit_budget
@@ -573,32 +508,12 @@ msgstr "Προς Έγκριση"
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.view_crossovered_budget_search
 msgid "To Approve Budgets"
-msgstr ""
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_unread
-msgid "Unread Messages"
-msgstr "Αδιάβαστα Μυνήματα"
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Μετρητής μη αναγνωσμένων μηνυμάτων"
+msgstr "Προϋπολογισμός προς Έγκριση"
 
 #. module: account_budget
 #: selection:crossovered.budget,state:0
 msgid "Validated"
-msgstr "Επικυρωμένη"
-
-#. module: account_budget
-#: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_website_message_ids
-msgid "Website Messages"
-msgstr "Μηνύματα Ιστότοπου"
-
-#. module: account_budget
-#: model:ir.model.fields,help:account_budget.field_crossovered_budget_website_message_ids
-msgid "Website communication history"
-msgstr "Ιστορικό επικοινωνίας ιστότοπου"
+msgstr "Επικυρωμένο"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_budget
@@ -608,17 +523,17 @@ msgstr "στο"
 #. module: account_budget
 #: model:ir.model,name:account_budget.model_report_account_budget_report_analyticaccountbudget
 msgid "report.account_budget.report_analyticaccountbudget"
-msgstr ""
+msgstr "report.account_budget.report_analyticaccountbudget"
 
 #. module: account_budget
 #: model:ir.model,name:account_budget.model_report_account_budget_report_budget
 msgid "report.account_budget.report_budget"
-msgstr ""
+msgstr "report.account_budget.report_budget"
 
 #. module: account_budget
 #: model:ir.model,name:account_budget.model_report_account_budget_report_crossoveredbudget
 msgid "report.account_budget.report_crossoveredbudget"
-msgstr ""
+msgstr "report.account_budget.report_crossoveredbudget"
 
 #. module: account_budget
 #: model:ir.ui.view,arch_db:account_budget.report_analyticaccountbudget
@@ -626,3 +541,57 @@ msgstr ""
 #: model:ir.ui.view,arch_db:account_budget.report_crossoveredbudget
 msgid "to"
 msgstr "σε"
+
+#~ msgid "Action Needed"
+#~ msgstr "Απαιτείται ενέργεια"
+
+#~ msgid "Date of the last message posted on the record."
+#~ msgstr "Ημερομηνία του τελευταίου μηνύματος "
+
+#~ msgid "Followers"
+#~ msgstr "Ακόλουθοι"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Ακόλουθοι (Κανάλια)"
+
+#~ msgid "Followers (Partners)"
+#~ msgstr "Ακόλουθοι (Συνεργάτες)"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Εάν επιλεγεί τα νέα μηνύματα χρειάζονται την προσοχή σας"
+
+#~ msgid "If checked, new messages require your attention."
+#~ msgstr "Εάν επιλεγεί τα νέα μηνύματα χρειάζονται την προσοχή σας."
+
+#~ msgid "Is Follower"
+#~ msgstr "Είναι Ακόλουθος"
+
+#~ msgid "Last Message Date"
+#~ msgstr "Τελευταία ημερομηνία μηνύματος"
+
+#~ msgid "Messages"
+#~ msgstr "Μηνύματα"
+
+#~ msgid "Messages and communication history"
+#~ msgstr "Μηνύματα και ιστορικό επικοινωνίας"
+
+#~ msgid "Number of Actions"
+#~ msgstr "Αριθμός ενεργειών"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Πλήθος μηνυμάτων που απαιτούν ενέργεια"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Πλήθος μη αναγνωσμένων μηνυμάτων"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Αδιάβαστα Μηνύματα"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Μετρητής μη αναγνωσμένων μηνυμάτων"
+
+#~ msgid "Website Messages"
+#~ msgstr "Μηνύματα Ιστότοπου"
+
+#~ msgid "Website communication history"
+#~ msgstr "Ιστορικό επικοινωνίας ιστότοπου"

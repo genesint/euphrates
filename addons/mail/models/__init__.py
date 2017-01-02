@@ -4,7 +4,9 @@ import mail_message_subtype
 import mail_tracking_value
 import mail_alias
 import mail_followers
+import mail_notification
 import mail_message
+import mail_activity
 import mail_mail
 import mail_thread
 import mail_channel

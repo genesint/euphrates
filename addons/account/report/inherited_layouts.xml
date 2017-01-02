@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
 <data>
 
-<template id="external_layout_footer" inherit_id="report.external_layout_footer">
+<template id="external_layout_footer" inherit_id="report.external_layout_footer_default">
     <xpath expr="//ul[@name='financial_infos']" position="inside">
         <t t-if="not company.custom_footer">
             <t t-set="is_first" t-value="True"/>
@@ -19,4 +19,4 @@
 </template>
 
 </data>
-</openerp>
+</odoo>

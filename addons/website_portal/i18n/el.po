@@ -1,20 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * website_portal
-# 
+#
 # Translators:
+# Goutoudis Kostas <goutoudis@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:41+0000\n"
-"PO-Revision-Date: 2015-10-07 23:45+0000\n"
-"Last-Translator: Martin Trigaux\n"
+"POT-Creation-Date: 2016-08-18 14:08+0000\n"
+"PO-Revision-Date: 2015-12-11 22:29+0000\n"
+"Last-Translator: Goutoudis Kostas <goutoudis@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/odoo/odoo-9/language/el/)\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: website_portal
@@ -36,8 +37,11 @@ msgstr "Όνομα Εταιρείας"
 #: model:ir.ui.view,arch_db:website_portal.details
 msgid ""
 "Confirm\n"
-"                                        <span class=\"fa fa-long-arrow-right\"/>"
+"                                        <span class=\"fa fa-long-arrow-right"
+"\"/>"
 msgstr ""
+"Επιβεβαίωση\n"
+"<span class=\"fa fa-long-arrow-right\"/>"
 
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.contact
@@ -47,7 +51,7 @@ msgstr "Επαφή"
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
 msgid "Contact Details"
-msgstr ""
+msgstr "Λεπτομέρειες Επαφής"
 
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
@@ -57,7 +61,7 @@ msgstr "Χώρα"
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
 msgid "Country..."
-msgstr ""
+msgstr "Χώρα..."
 
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.custom_panel
@@ -75,7 +79,7 @@ msgid "Email"
 msgstr "Email"
 
 #. module: website_portal
-#: code:addons/website_portal/controllers/main.py:72
+#: code:addons/website_portal/controllers/main.py:73
 #, python-format
 msgid "Invalid Email! Please enter a valid email address."
 msgstr ""
@@ -84,7 +88,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website_portal.details
 #: model:ir.ui.view,arch_db:website_portal.my_account_link
 msgid "My Account"
-msgstr ""
+msgstr "Ο Λογαριασμός μου"
 
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
@@ -97,7 +101,7 @@ msgid "Place your content here."
 msgstr ""
 
 #. module: website_portal
-#: code:addons/website_portal/controllers/main.py:87
+#: code:addons/website_portal/controllers/main.py:88
 #, python-format
 msgid "Some required fields are empty."
 msgstr ""
@@ -105,7 +109,7 @@ msgstr ""
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
 msgid "State / Province"
-msgstr ""
+msgstr "Νομός/Πολιτεία/Επαρχία"
 
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
@@ -115,12 +119,12 @@ msgstr "Οδός"
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
 msgid "VAT Number"
-msgstr ""
+msgstr "ΑΦΜ"
 
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.account
 msgid "Your Details"
-msgstr ""
+msgstr "Το προφίλ μου"
 
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
@@ -130,9 +134,9 @@ msgstr "Το Όνομά σας"
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
 msgid "Zip / Postal Code"
-msgstr ""
+msgstr "Ταχυδρομικός Κώδικας"
 
 #. module: website_portal
 #: model:ir.ui.view,arch_db:website_portal.details
 msgid "select..."
-msgstr ""
+msgstr "επιλέξτε..."

@@ -1,20 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_setup
-# 
+#
 # Translators:
+# Goutoudis Kostas <goutoudis@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 10:25+0000\n"
-"PO-Revision-Date: 2015-10-22 01:17+0000\n"
+"POT-Creation-Date: 2016-08-18 14:07+0000\n"
+"PO-Revision-Date: 2016-02-12 10:37+0000\n"
 "Last-Translator: Martin Trigaux\n"
 "Language-Team: Greek (http://www.transifex.com/odoo/odoo-9/language/el/)\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_setup
@@ -28,13 +29,25 @@ msgid "Allow documents sharing"
 msgstr "Επιτρέπει τον διαμοιρασμό εγγράφων"
 
 #. module: base_setup
+#: model:ir.model.fields,field_description:base_setup.field_base_config_settings_group_multi_currency
+msgid "Allow multi currencies"
+msgstr ""
+
+#. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_module_google_calendar
 msgid "Allow the users to synchronize their calendar  with Google Calendar"
 msgstr ""
+"Επιτρέπει στους χρήστες να συγχρονίζουν αυτό το ημερολόγιο με το Google "
+"Calendar"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_module_base_import
 msgid "Allow users to import data from CSV/XLS/XLSX/ODS files"
+msgstr ""
+
+#. module: base_setup
+#: model:ir.model.fields,help:base_setup.field_base_config_settings_group_multi_currency
+msgid "Allows to work in a multi currency environment"
 msgstr ""
 
 #. module: base_setup
@@ -46,7 +59,7 @@ msgstr "Εφαρμογή"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_module_google_drive
 msgid "Attach Google documents to any record"
-msgstr ""
+msgstr "Επισύναψη αρχείων Google σε οποιαδήποτε εγγραφή"
 
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
@@ -73,7 +86,7 @@ msgstr "Διαμόρφωσε Πωλήσεις"
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
 msgid "Configure outgoing email servers"
-msgstr "Διαμόρφωση το διακομιστών εξερχόμενων mail"
+msgstr "Ρυθμίσετε τον διακομιστή εξερχόμενων emails"
 
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
@@ -104,7 +117,7 @@ msgstr "Πελάτης"
 #: model:ir.model.fields,field_description:base_setup.field_base_setup_terminology_display_name
 #: model:ir.model.fields,field_description:base_setup.field_sale_config_settings_display_name
 msgid "Display Name"
-msgstr "Όνομα εμφάνισης"
+msgstr "Εμφάνιση Ονόματος"
 
 #. module: base_setup
 #: selection:base.setup.terminology,partner:0
@@ -181,14 +194,14 @@ msgstr "Τελευταία αλλαγή στις"
 #: model:ir.model.fields,field_description:base_setup.field_base_setup_terminology_write_uid
 #: model:ir.model.fields,field_description:base_setup.field_sale_config_settings_write_uid
 msgid "Last Updated by"
-msgstr "Τελευταία ενημέρωση από"
+msgstr "Τελευταία Ενημέρωση από"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_write_date
 #: model:ir.model.fields,field_description:base_setup.field_base_setup_terminology_write_date
 #: model:ir.model.fields,field_description:base_setup.field_sale_config_settings_write_date
 msgid "Last Updated on"
-msgstr "Τελευταία ενημέρωση στις"
+msgstr "Τελευταία Ενημέρωση στις"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_module_inter_company_rules
@@ -196,7 +209,7 @@ msgid "Manage Inter Company"
 msgstr ""
 
 #. module: base_setup
-#: model:ir.model.fields,field_description:base_setup.field_base_config_settings_group_light_multi_company
+#: model:ir.model.fields,field_description:base_setup.field_base_config_settings_group_multi_company
 msgid "Manage multiple companies"
 msgstr "Διαχείριση πολλαπλών εταιριών"
 
@@ -212,10 +225,17 @@ msgstr "Πολυ Εταιρική"
 
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
-msgid ""
-"Once installed, you can configure your API credentials for \"Google "
-"calendar\""
+msgid "Multi Currencies"
 msgstr ""
+
+#. module: base_setup
+#: model:ir.ui.view,arch_db:base_setup.view_general_configuration
+msgid ""
+"Once installed, you can configure your API credentials for \"Google calendar"
+"\""
+msgstr ""
+"Μόλις εγκατασταθεί μπορείτε να ρυθμίσετε τα στοιχεία εισόδου API για το "
+"\"Google calendar\""
 
 #. module: base_setup
 #: selection:base.setup.terminology,partner:0
@@ -235,7 +255,7 @@ msgstr "Πρόσβαση Πύλης"
 #. module: base_setup
 #: model:ir.model.fields,help:base_setup.field_base_config_settings_module_share
 msgid "Share or embbed any screen of Odoo."
-msgstr ""
+msgstr "Διαμοιρασμός ή ενσωμάτωση οποιαδήποτε οθόνης του Odoo."
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_company_share_partner
@@ -246,13 +266,15 @@ msgstr ""
 #: model:ir.model.fields,help:base_setup.field_base_config_settings_company_share_partner
 msgid ""
 "Share your partners to all companies defined in your instance.\n"
-" * Checked : Partners are visible for every companies, even if a company is defined on the partner.\n"
-" * Unchecked : Each company can see only its partner (partners where company is defined). Partners not related to a company are visible for all companies."
+" * Checked : Partners are visible for every companies, even if a company is "
+"defined on the partner.\n"
+" * Unchecked : Each company can see only its partner (partners where company "
+"is defined). Partners not related to a company are visible for all companies."
 msgstr ""
 
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
-msgid "Shared ressources"
+msgid "Shared resources"
 msgstr ""
 
 #. module: base_setup
@@ -268,18 +290,19 @@ msgstr "Ενοικιαστής"
 #. module: base_setup
 #: model:ir.model.fields,help:base_setup.field_base_config_settings_module_google_calendar
 msgid "This installs the module google_calendar."
-msgstr ""
+msgstr "Αυτό εγκαθιστά την εφαρμογή google_calendar."
 
 #. module: base_setup
 #: model:ir.model.fields,help:base_setup.field_base_config_settings_module_google_drive
 msgid "This installs the module google_docs."
-msgstr ""
+msgstr "Αυτό εγκαθιστά την εφαρμογή google_docs."
 
 #. module: base_setup
 #: model:ir.model.fields,help:base_setup.field_base_config_settings_module_inter_company_rules
 msgid ""
 "This installs the module inter_company_rules.\n"
-" Configure company rules to automatically create SO/PO when one of your company sells/buys to another of your company."
+" Configure company rules to automatically create SO/PO when one of your "
+"company sells/buys to another of your company."
 msgstr ""
 
 #. module: base_setup
@@ -290,23 +313,31 @@ msgstr "Χρησιμοποίησε μια άλλη λέξη για να πεις
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_base_config_settings_module_auth_oauth
 msgid "Use external authentication providers, sign in with Google..."
-msgstr ""
+msgstr "Χρησιμοποίηση εξωτερικών πάροχων αυθεντικότητας, συνδέση με Google..."
 
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
 msgid ""
 "When you send a document to a customer\n"
-"                                    (quotation, invoice), your customer will be\n"
-"                                    able to signup to get all his documents,\n"
-"                                    read your company news, check his projects,\n"
+"                                    (quotation, invoice), your customer will "
+"be\n"
+"                                    able to signup to get all his "
+"documents,\n"
+"                                    read your company news, check his "
+"projects,\n"
 "                                    etc."
-msgstr "Όταν στέλνεις ένα έγγραφο σε ένα πελάτη\n(προσφορά, τιμολόγιο), ο πελάτης θα μπορεί\nνα έχει την δυνατότητα εγγραφής για να πάρει όλα αυτά τα έγγραφα,\nνα διαβάσει τα εταιρικά σου νέα, ελέγξει τα έργα του,\nκλπ."
+msgstr ""
+"Όταν στέλνεις ένα έγγραφο σε ένα πελάτη\n"
+"(προσφορά, τιμολόγιο), ο πελάτης θα μπορεί\n"
+"να έχει την δυνατότητα εγγραφής για να πάρει όλα αυτά τα έγγραφα,\n"
+"να διαβάσει τα εταιρικά σου νέα, ελέγξει τα έργα του,\n"
+"κλπ."
 
 #. module: base_setup
-#: model:ir.model.fields,help:base_setup.field_base_config_settings_group_light_multi_company
+#: model:ir.model.fields,help:base_setup.field_base_config_settings_group_multi_company
 msgid ""
-"Work in multi-company environments, with appropriate security access between"
-" companies."
+"Work in multi-company environments, with appropriate security access between "
+"companies."
 msgstr ""
 
 #. module: base_setup
@@ -314,19 +345,24 @@ msgstr ""
 msgid ""
 "You can use this wizard to change the terminologies for customers in the "
 "whole application."
-msgstr "Μπορείς να χρησιμοποιήσεις αυτόν τον οδηγό για να αλλάξεις τις ορολογίες για τους πελάτες σε όλη την εφαρμογή"
+msgstr ""
+"Μπορείς να χρησιμοποιήσεις αυτόν τον οδηγό για να αλλάξεις τις ορολογίες για "
+"τους πελάτες σε όλη την εφαρμογή"
 
 #. module: base_setup
 #: model:ir.ui.view,arch_db:base_setup.view_general_configuration
 msgid ""
 "You will find more options in your company details: address for the header "
 "and footer, overdue payments texts, etc."
-msgstr "Θα βρείτε περισσότερες δυνατότητες στις λεπτομέρειες της εταιρίας σας: διεύθυνση για την επικεφαλίδα και το υποσέλιδο, κείμενα καθυστερούμενων υπολοίπων , κλπ."
+msgstr ""
+"Θα βρείτε περισσότερες δυνατότητες στις λεπτομέρειες της εταιρίας σας: "
+"διεύθυνση για την επικεφαλίδα και το υποσέλιδο, κείμενα ληξιπρόθεσμων "
+"οφειλών, κλπ."
 
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_base_config_settings
 msgid "base.config.settings"
-msgstr ""
+msgstr "base.config.settings"
 
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_base_setup_terminology
@@ -336,4 +372,4 @@ msgstr ""
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_sale_config_settings
 msgid "sale.config.settings"
-msgstr ""
+msgstr "sale.config.settings"

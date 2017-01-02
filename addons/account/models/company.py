@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openerp import fields, models, api, _
+from odoo import fields, models, api, _
 from datetime import timedelta
 
 
@@ -19,12 +19,11 @@ class ResCompany(models.Model):
     bank_account_code_prefix = fields.Char(string='Prefix of the bank accounts', oldname="bank_account_code_char")
     cash_account_code_prefix = fields.Char(string='Prefix of the cash accounts')
     accounts_code_digits = fields.Integer(string='Number of digits in an account code')
+    tax_cash_basis_journal_id = fields.Many2one('account.journal', string="Tax Cash Basis Journal")
     tax_calculation_rounding_method = fields.Selection([
         ('round_per_line', 'Round per Line'),
         ('round_globally', 'Round Globally'),
-        ], default='round_per_line', string='Tax Calculation Rounding Method',
-        help="If you select 'Round per Line' : for each tax, the tax amount will first be computed and rounded for each PO/SO/invoice line and then these rounded amounts will be summed, leading to the total amount for that tax. If you select 'Round Globally': for each tax, the tax amount will be computed for each PO/SO/invoice line, then these amounts will be summed and eventually this total tax amount will be rounded. If you sell with tax included, you should choose 'Round per line' because you certainly want the sum of your tax-included line subtotals to be equal to the total amount with taxes.")
-    paypal_account = fields.Char(string='Paypal Account', size=128, help="Paypal username (usually email) for receiving online payments.")
+        ], default='round_per_line', string='Tax Calculation Rounding Method')
     currency_exchange_journal_id = fields.Many2one('account.journal', string="Exchange Gain or Loss Journal", domain=[('type', '=', 'general')])
     income_currency_exchange_account_id = fields.Many2one('account.account', related='currency_exchange_journal_id.default_credit_account_id',
         string="Gain Exchange Rate Account", domain="[('internal_type', '=', 'other'), ('deprecated', '=', False), ('company_id', '=', id)]")
@@ -54,7 +53,7 @@ Best Regards,''')
         self = self[0]
         last_month = self.fiscalyear_last_month
         last_day = self.fiscalyear_last_day
-        if (date.month < last_month or (date.month == last_month and date.date <= last_day)):
+        if (date.month < last_month or (date.month == last_month and date.day <= last_day)):
             date = date.replace(month=last_month, day=last_day)
         else:
             date = date.replace(month=last_month, day=last_day, year=date.year + 1)
@@ -64,9 +63,7 @@ Best Regards,''')
         return {'date_from': date_from, 'date_to': date_to}
 
     def get_new_account_code(self, current_code, old_prefix, new_prefix, digits):
-        new_prefix_length = len(new_prefix)
-        number = current_code[len(old_prefix):]
-        return new_prefix + '0' * (digits - new_prefix_length - len(number)) + number
+        return new_prefix + current_code.replace(old_prefix, '', 1).lstrip('0').rjust(digits-len(new_prefix), '0')
 
     def reflect_code_prefix_change(self, old_code, new_code, digits):
         accounts = self.env['account.account'].search([('code', 'like', old_code), ('internal_type', '=', 'liquidity'),
@@ -74,6 +71,11 @@ Best Regards,''')
         for account in accounts:
             if account.code.startswith(old_code):
                 account.write({'code': self.get_new_account_code(account.code, old_code, new_code, digits)})
+
+    def reflect_code_digits_change(self, digits):
+        accounts = self.env['account.account'].search([('company_id', '=', self.id)], order='code asc')
+        for account in accounts:
+            account.write({'code': account.code.rstrip('0').ljust(digits, '0')})
 
     @api.multi
     def write(self, values):
@@ -86,4 +88,6 @@ Best Regards,''')
             if values.get('cash_account_code_prefix') or values.get('accounts_code_digits'):
                 new_cash_code = values.get('cash_account_code_prefix') or company.cash_account_code_prefix
                 company.reflect_code_prefix_change(company.cash_account_code_prefix, new_cash_code, digits)
+            if values.get('accounts_code_digits'):
+                company.reflect_code_digits_change(digits)
         return super(ResCompany, self).write(values)

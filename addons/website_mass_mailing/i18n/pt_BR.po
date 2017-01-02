@@ -3,15 +3,18 @@
 # * website_mass_mailing
 # 
 # Translators:
-# Mateus Cerqueira Lopes <mateus1@gmail.com>, 2015
+# Mateus Lopes <mateus1@gmail.com>, 2016
+# Clemilton Clementino <clemylton@hotmail.com>, 2016
+# grazziano <g.negocios@outlook.com.br>, 2016
+# Martin Trigaux <mat@odoo.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo Server 9.saas~10c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:41+0000\n"
-"PO-Revision-Date: 2015-10-12 03:37+0000\n"
-"Last-Translator: Mateus Cerqueira Lopes <mateus1@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/odoo/odoo-9/language/pt_BR/)\n"
+"POT-Creation-Date: 2016-08-18 14:08+0000\n"
+"PO-Revision-Date: 2016-08-18 14:08+0000\n"
+"Last-Translator: Martin Trigaux <mat@odoo.com>, 2016\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -26,12 +29,12 @@ msgstr "&amp;times;"
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.website_popup_snippet
 msgid "<span class=\"oe_snippet_thumbnail_title\">Newsletter Popup</span>"
-msgstr ""
+msgstr "<span class=\"oe_snippet_thumbnail_title\">Popup de Newsletter</span>"
 
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.mailing_list_subscribe
 msgid "<span class=\"oe_snippet_thumbnail_title\">Newsletter</span>"
-msgstr ""
+msgstr "<span class=\"oe_snippet_thumbnail_title\">Newsletter</span>"
 
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.website_popup_snippet
@@ -39,10 +42,12 @@ msgid ""
 "<strong>Newsletter Popup!</strong> The newsletter popup snippet effect is "
 "active on this page. Click"
 msgstr ""
+"<strong>Popup de Newsletter!</strong> O pop-up de newsletter está ativo "
+"nesta página. Clique"
 
 #. module: website_mass_mailing
 #. openerp-web
-#: code:addons/website_mass_mailing/static/src/js/website_mass_mailing.editor.js:17
+#: code:addons/website_mass_mailing/static/src/js/website_mass_mailing.editor.js:15
 #, python-format
 msgid "Add a Newsletter Subscribe Button"
 msgstr "Adicionar botão para assinar Newsletter"
@@ -52,7 +57,7 @@ msgstr "Adicionar botão para assinar Newsletter"
 #: code:addons/website_mass_mailing/static/src/js/website_mass_mailing.editor.js:49
 #, python-format
 msgid "Add a Newsletter Subscribe Popup"
-msgstr ""
+msgstr "Adicione um Popup de Subscrição de Newsletter"
 
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.mailing_list_subscribe
@@ -63,22 +68,22 @@ msgstr "Alterar Newsletter"
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.unsubscribe
 msgid "Choose your mailing subscriptions."
-msgstr ""
+msgstr "Escolha as suas subscrições de correspondência."
 
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.website_popup_snippet
 msgid "Here To Edit Dialog Content"
-msgstr ""
+msgstr "Aqui para Editar o Conteúdo de Diálogo"
 
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.unsubscribe
 #: model:ir.ui.view,arch_db:website_mass_mailing.unsubscribed
 msgid "Mailing Subscriptions"
-msgstr ""
+msgstr "Subscrições de Correspondência"
 
 #. module: website_mass_mailing
 #. openerp-web
-#: code:addons/website_mass_mailing/static/src/js/website_mass_mailing.editor.js:24
+#: code:addons/website_mass_mailing/static/src/js/website_mass_mailing.editor.js:22
 #, python-format
 msgid "Newsletter"
 msgstr "Newsletter"
@@ -101,7 +106,7 @@ msgstr "Obrigado por se cadastrar!"
 
 #. module: website_mass_mailing
 #. openerp-web
-#: code:addons/website_mass_mailing/static/src/js/website_mass_mailing.editor.js:78
+#: code:addons/website_mass_mailing/static/src/js/website_mass_mailing.editor.js:80
 #, python-format
 msgid "Type Here ..."
 msgstr "Escreva Aqui ..."
@@ -109,15 +114,15 @@ msgstr "Escreva Aqui ..."
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.unsubscribe
 msgid "You are not subscribed to any of our mailing list."
-msgstr ""
+msgstr "Você não está inscrito em nenhuma de nossa listas de correspondência."
 
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.unsubscribed
 msgid "Your changes have been saved."
-msgstr ""
+msgstr "Suas alterações foram salvas."
 
 #. module: website_mass_mailing
 #: model:ir.ui.view,arch_db:website_mass_mailing.mailing_list_subscribe
 #: model:ir.ui.view,arch_db:website_mass_mailing.website_popup_snippet
 msgid "your email..."
-msgstr "seu email..."
+msgstr "seu e-mail..."

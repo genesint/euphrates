@@ -1,26 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * note
-# 
+#
 # Translators:
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-18 08:10+0000\n"
-"PO-Revision-Date: 2015-10-17 16:57+0000\n"
-"Last-Translator: Martin Trigaux\n"
+"POT-Creation-Date: 2016-08-18 14:06+0000\n"
+"PO-Revision-Date: 2015-11-21 21:26+0000\n"
+"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/odoo/odoo-9/language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_needaction
-msgid "Action Needed"
-msgstr ""
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_open
@@ -31,23 +27,23 @@ msgstr "Actiu"
 #. module: note
 #: model:ir.ui.view,arch_db:note.view_note_note_filter
 msgid "Archive"
-msgstr ""
+msgstr "Arxiva"
 
 #. module: note
 #: model:ir.ui.view,arch_db:note.view_note_note_filter
 msgid "By sticky note Category"
-msgstr ""
+msgstr "Per categoria de nota enganxosa"
 
 #. module: note
 #: model:ir.actions.act_window,help:note.action_note_note
 msgid "Click to add a personal note."
-msgstr ""
+msgstr "Clica per afegir una nota personal."
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_color
 #: model:ir.model.fields,field_description:note.field_note_tag_color
 msgid "Color Index"
-msgstr ""
+msgstr "Índex de color"
 
 #. module: note
 #: model:ir.ui.menu,name:note.menu_note_configuration
@@ -74,14 +70,9 @@ msgid "Date done"
 msgstr "Data realització"
 
 #. module: note
-#: model:ir.model.fields,help:note.field_note_note_message_last_post
-msgid "Date of the last message posted on the record."
-msgstr ""
-
-#. module: note
 #: model:ir.ui.view,arch_db:note.view_note_note_kanban
 msgid "Delete"
-msgstr ""
+msgstr "Elimina"
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_display_name
@@ -93,22 +84,7 @@ msgstr "Mostra Nom"
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_stage_fold
 msgid "Folded by Default"
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_follower_ids
-msgid "Followers"
-msgstr "Seguidors"
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Followers (Canals)"
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_partner_ids
-msgid "Followers (Partners)"
-msgstr ""
+msgstr "Plegat de forma predeterminada"
 
 #. module: note
 #: model:ir.ui.view,arch_db:note.view_note_note_filter
@@ -121,26 +97,6 @@ msgstr "Agrupa per"
 #: model:ir.model.fields,field_description:note.field_note_tag_id
 msgid "ID"
 msgstr "ID"
-
-#. module: note
-#: model:ir.model.fields,help:note.field_note_note_message_unread
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,help:note.field_note_note_message_needaction
-msgid "If checked, new messages require your attention."
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_is_follower
-msgid "Is Follower"
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_last_post
-msgid "Last Message Date"
-msgstr "Data Últim Missatge"
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note___last_update
@@ -167,17 +123,7 @@ msgstr "Actualitzat per última vegada el dia"
 #: model:note.stage,name:note.demo_note_stage_03
 #: model:note.stage,name:note.note_stage_03
 msgid "Later"
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_ids
-msgid "Messages"
-msgstr "Missatges"
-
-#. module: note
-#: model:ir.model.fields,help:note.field_note_note_message_ids
-msgid "Messages and communication history"
-msgstr ""
+msgstr "Més tard"
 
 #. module: note
 #: model:note.stage,name:note.note_stage_00
@@ -185,10 +131,10 @@ msgid "New"
 msgstr "Nou"
 
 #. module: note
-#: code:addons/note/note.py:163
+#: code:addons/note/note.py:165
 #, python-format
 msgid "New Note"
-msgstr ""
+msgstr "Nova nota"
 
 #. module: note
 #: model:ir.model,name:note.model_note_note
@@ -200,22 +146,22 @@ msgstr "Nota"
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_memo
 msgid "Note Content"
-msgstr ""
+msgstr "Contingut de la nota"
 
 #. module: note
 #: model:ir.model,name:note.model_note_stage
 msgid "Note Stage"
-msgstr ""
+msgstr "Etapa de la nota"
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_name
 msgid "Note Summary"
-msgstr ""
+msgstr "Resum de la nota"
 
 #. module: note
 #: model:ir.model,name:note.model_note_tag
 msgid "Note Tag"
-msgstr ""
+msgstr "Etiqueta de la nota"
 
 #. module: note
 #: model:ir.actions.act_window,name:note.action_note_note
@@ -226,21 +172,6 @@ msgid "Notes"
 msgstr "Notes"
 
 #. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_needaction_counter
-msgid "Number of Actions"
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,help:note.field_note_note_message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,help:note.field_note_note_message_unread_counter
-msgid "Number of unread messages"
-msgstr ""
-
-#. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_user_id
 #: model:ir.model.fields,field_description:note.field_note_stage_user_id
 msgid "Owner"
@@ -249,7 +180,7 @@ msgstr "Propietari"
 #. module: note
 #: model:ir.model.fields,help:note.field_note_stage_user_id
 msgid "Owner of the note stage."
-msgstr ""
+msgstr "Propietari de l'etapa de la nota."
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_sequence
@@ -271,7 +202,7 @@ msgstr "Nom de la fase"
 #. module: note
 #: model:ir.ui.view,arch_db:note.view_note_stage_form
 msgid "Stage of Notes"
-msgstr ""
+msgstr "Etapa de les notes"
 
 #. module: note
 #: model:ir.actions.act_window,name:note.action_note_stage
@@ -283,22 +214,22 @@ msgstr "Fases"
 #. module: note
 #: model:ir.ui.view,arch_db:note.view_note_stage_tree
 msgid "Stages of Notes"
-msgstr ""
+msgstr "Etapes de les notes"
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_stage_ids
 msgid "Stages of Users"
-msgstr ""
+msgstr "Etapes dels usuaris"
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_tag_name
 msgid "Tag Name"
-msgstr ""
+msgstr "Nom de l'etiqueta"
 
 #. module: note
 #: sql_constraint:note.tag:0
 msgid "Tag name already exists !"
-msgstr ""
+msgstr "Nom d'etiqueta ja existeix!"
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_tag_ids
@@ -321,32 +252,29 @@ msgstr "Avui"
 #. module: note
 #: model:note.stage,name:note.demo_note_stage_02
 msgid "Tomorrow"
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: note
-#: model:ir.model.fields,field_description:note.field_note_note_message_unread_counter
-msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Demà"
 
 #. module: note
 #: model:ir.actions.act_window,help:note.action_note_note
 msgid ""
 "Use notes to organize personal tasks or notes. All\n"
-"            notes are private; no one else will be able to see them. However\n"
-"            you can share some notes with other people by inviting followers\n"
+"            notes are private; no one else will be able to see them. "
+"However\n"
+"            you can share some notes with other people by inviting "
+"followers\n"
 "            on the note. (Useful for meeting minutes, especially if\n"
 "            you activate the pad feature for collaborative writings)."
 msgstr ""
+"Utilitzeu les notes per a organitzar les tasques personals o notes. Totes\n"
+"les notes són privades; ningú podrà veure'ls. No obstant\n"
+"podreu compartir algunes notes amb altres persones convidant als seguidors\n"
+"en una nota. (Útil per a reunions, especialment si\n"
+"heu activat la funció d'escriptura col·laboradora)"
 
 #. module: note
 #: model:ir.model.fields,help:note.field_note_stage_sequence
 msgid "Used to order the note stages"
-msgstr ""
+msgstr "S'utilitza per ordenar les etapes de les notes"
 
 #. module: note
 #: model:ir.model,name:note.model_res_users
@@ -359,3 +287,54 @@ msgid ""
 "You can customize how you process your notes/tasks by adding,\n"
 "            removing or modifying columns."
 msgstr ""
+"Podeu personalitzar la forma de processar les vostres notes/tasques "
+"afegint,\n"
+"eliminant o modificant columnes."
+
+#~ msgid "Action Needed"
+#~ msgstr "Cal fer alguna acció"
+
+#~ msgid "Date of the last message posted on the record."
+#~ msgstr "Data de l'últim missatge enviat al registre."
+
+#~ msgid "Followers"
+#~ msgstr "Seguidors"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Followers (Canals)"
+
+#~ msgid "Followers (Partners)"
+#~ msgstr "Seguidors (Socis)"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Si està marcat hi ha missatges nous pendents."
+
+#~ msgid "If checked, new messages require your attention."
+#~ msgstr "Si està marcat, els nous missatges requereixen la vostra atenció"
+
+#~ msgid "Is Follower"
+#~ msgstr "És seguidor"
+
+#~ msgid "Last Message Date"
+#~ msgstr "Data Últim Missatge"
+
+#~ msgid "Messages"
+#~ msgstr "Missatges"
+
+#~ msgid "Messages and communication history"
+#~ msgstr "Historial de missatges i comunicació"
+
+#~ msgid "Number of Actions"
+#~ msgstr "Nombre d'accions"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nombre de missatges que requereixen una atenció"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Nombre de missatges no llegits"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Missatges pendents de llegir"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Comptador de missatges no llegits"

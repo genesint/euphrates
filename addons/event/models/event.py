@@ -2,11 +2,15 @@
 
 import pytz
 
-from openerp import _, api, fields, models
-from openerp.exceptions import UserError
+from odoo import _, api, fields, models
+from odoo.addons.mail.models.mail_template import format_tz
+from odoo.exceptions import AccessError, UserError, ValidationError
+from odoo.tools.translate import html_translate
+
+from dateutil.relativedelta import relativedelta
 
 
-class event_type(models.Model):
+class EventType(models.Model):
     """ Event Type """
     _name = 'event.type'
     _description = 'Event Type'
@@ -21,11 +25,11 @@ class event_type(models.Model):
         help="It will select this default maximum value when you choose this event")
 
 
-class event_event(models.Model):
+class EventEvent(models.Model):
     """Event"""
     _name = 'event.event'
     _description = 'Event'
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread']
     _order = 'date_begin'
 
     name = fields.Char(
@@ -48,7 +52,7 @@ class event_event(models.Model):
         readonly=False, states={'done': [('readonly', True)]},
         oldname='type')
     color = fields.Integer('Kanban Color Index')
-    event_mail_ids = fields.One2many('event.mail', 'event_id', string='Mail Schedule', default=lambda self: self._default_event_mail_ids())
+    event_mail_ids = fields.One2many('event.mail', 'event_id', string='Mail Schedule', default=lambda self: self._default_event_mail_ids(), copy=True)
 
     @api.model
     def _default_event_mail_ids(self):
@@ -56,6 +60,16 @@ class event_event(models.Model):
             'interval_unit': 'now',
             'interval_type': 'after_sub',
             'template_id': self.env.ref('event.event_subscription')
+        }), (0, 0, {
+            'interval_nbr': 1,
+            'interval_unit': 'days',
+            'interval_type': 'before_event',
+            'template_id': self.env.ref('event.event_reminder')
+        }), (0, 0, {
+            'interval_nbr': 10,
+            'interval_unit': 'days',
+            'interval_type': 'before_event',
+            'template_id': self.env.ref('event.event_reminder')
         })]
 
     # Seats and computation
@@ -73,7 +87,7 @@ class event_event(models.Model):
         oldname='register_current', string='Reserved Seats',
         store=True, readonly=True, compute='_compute_seats')
     seats_available = fields.Integer(
-        oldname='register_avail', string='Maximum Attendees',
+        oldname='register_avail', string='Available Seats',
         store=True, readonly=True, compute='_compute_seats')
     seats_unconfirmed = fields.Integer(
         oldname='register_prospect', string='Unconfirmed Seat Reservations',
@@ -119,15 +133,15 @@ class event_event(models.Model):
         'event.registration', 'event_id', string='Attendees',
         readonly=False, states={'done': [('readonly', True)]})
     # Date fields
-    date_tz = fields.Selection('_tz_get', string='Timezone', default=lambda self: self.env.user.tz)
+    date_tz = fields.Selection('_tz_get', string='Timezone', required=True, default=lambda self: self.env.user.tz)
     date_begin = fields.Datetime(
         string='Start Date', required=True,
         track_visibility='onchange', states={'done': [('readonly', True)]})
     date_end = fields.Datetime(
         string='End Date', required=True,
         track_visibility='onchange', states={'done': [('readonly', True)]})
-    date_begin_located = fields.Datetime(string='Start Date Located', compute='_compute_date_begin_tz')
-    date_end_located = fields.Datetime(string='End Date Located', compute='_compute_date_end_tz')
+    date_begin_located = fields.Char(string='Start Date Located', compute='_compute_date_begin_tz')
+    date_end_located = fields.Char(string='End Date Located', compute='_compute_date_end_tz')
 
     @api.model
     def _tz_get(self):
@@ -137,9 +151,7 @@ class event_event(models.Model):
     @api.depends('date_tz', 'date_begin')
     def _compute_date_begin_tz(self):
         if self.date_begin:
-            self_in_tz = self.with_context(tz=(self.date_tz or 'UTC'))
-            date_begin = fields.Datetime.from_string(self.date_begin)
-            self.date_begin_located = fields.Datetime.to_string(fields.Datetime.context_timestamp(self_in_tz, date_begin))
+            self.date_begin_located = format_tz(self.with_context({'use_babel': True}).env, self.date_begin, tz=self.date_tz)
         else:
             self.date_begin_located = False
 
@@ -147,9 +159,7 @@ class event_event(models.Model):
     @api.depends('date_tz', 'date_end')
     def _compute_date_end_tz(self):
         if self.date_end:
-            self_in_tz = self.with_context(tz=(self.date_tz or 'UTC'))
-            date_end = fields.Datetime.from_string(self.date_end)
-            self.date_end_located = fields.Datetime.to_string(fields.Datetime.context_timestamp(self_in_tz, date_end))
+            self.date_end_located = format_tz(self.with_context({'use_babel': True}).env, self.date_end, tz=self.date_tz)
         else:
             self.date_end_located = False
 
@@ -172,12 +182,12 @@ class event_event(models.Model):
         readonly=False, states={'done': [('readonly', True)]})
     country_id = fields.Many2one('res.country', 'Country',  related='address_id.country_id', store=True)
     description = fields.Html(
-        string='Description', oldname='note', translate=True,
+        string='Description', oldname='note', translate=html_translate, sanitize_attributes=False,
         readonly=False, states={'done': [('readonly', True)]})
     # badge fields
     badge_front = fields.Html(string='Badge Front')
     badge_back = fields.Html(string='Badge Back')
-    badge_innerleft = fields.Html(string='Badge Innner Left')
+    badge_innerleft = fields.Html(string='Badge Inner Left')
     badge_innerright = fields.Html(string='Badge Inner Right')
     event_logo = fields.Html(string='Event Logo')
 
@@ -186,7 +196,9 @@ class event_event(models.Model):
     def name_get(self):
         result = []
         for event in self:
-            dates = [dt.split(' ')[0] for dt in [event.date_begin, event.date_end] if dt]
+            date_begin = fields.Datetime.from_string(event.date_begin)
+            date_end = fields.Datetime.from_string(event.date_end)
+            dates = [fields.Date.to_string(fields.Datetime.context_timestamp(event, dt)) for dt in [date_begin, date_end] if dt]
             dates = sorted(set(dates))
             result.append((event.id, '%s (%s)' % (event.name, ' - '.join(dates))))
         return result
@@ -195,17 +207,17 @@ class event_event(models.Model):
     @api.constrains('seats_max', 'seats_available')
     def _check_seats_limit(self):
         if self.seats_availability == 'limited' and self.seats_max and self.seats_available < 0:
-            raise UserError(_('No more available seats.'))
+            raise ValidationError(_('No more available seats.'))
 
     @api.one
     @api.constrains('date_begin', 'date_end')
     def _check_closing_date(self):
         if self.date_end < self.date_begin:
-            raise UserError(_('Closing Date cannot be set before Beginning Date.'))
+            raise ValidationError(_('Closing Date cannot be set before Beginning Date.'))
 
     @api.model
     def create(self, vals):
-        res = super(event_event, self).create(vals)
+        res = super(EventEvent, self).create(vals)
         if res.organizer_id:
             res.message_subscribe([res.organizer_id.id])
         if res.auto_confirm:
@@ -214,7 +226,7 @@ class event_event(models.Model):
 
     @api.multi
     def write(self, vals):
-        res = super(event_event, self).write(vals)
+        res = super(EventEvent, self).write(vals)
         if vals.get('organizer_id'):
             self.message_subscribe([vals['organizer_id']])
         return res
@@ -261,15 +273,15 @@ class event_event(models.Model):
             self.env['mail.template'].browse(template_id).send_mail(attendee.id, force_send=force_send)
 
 
-class event_registration(models.Model):
+class EventRegistration(models.Model):
     _name = 'event.registration'
     _description = 'Attendee'
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread']
     _order = 'name, create_date desc'
 
     origin = fields.Char(
         string='Source Document', readonly=True,
-        help="Reference of the document that created the registration, for example a sale order")
+        help="Reference of the document that created the registration, for example a sales order")
     event_id = fields.Many2one(
         'event.event', string='Event', required=True,
         readonly=True, states={'draft': [('readonly', False)]})
@@ -289,13 +301,13 @@ class event_registration(models.Model):
         string='Status', default='draft', readonly=True, copy=False, track_visibility='onchange')
     email = fields.Char(string='Email')
     phone = fields.Char(string='Phone')
-    name = fields.Char(string='Attendee Name', select=True)
+    name = fields.Char(string='Attendee Name', index=True)
 
     @api.one
     @api.constrains('event_id', 'state')
     def _check_seats_limit(self):
         if self.event_id.seats_availability == 'limited' and self.event_id.seats_max and self.event_id.seats_available < (1 if self.state == 'draft' else 0):
-            raise UserError(_('No more seats available for this event.'))
+            raise ValidationError(_('No more seats available for this event.'))
 
     @api.multi
     def _check_auto_confirmation(self):
@@ -309,7 +321,7 @@ class event_registration(models.Model):
 
     @api.model
     def create(self, vals):
-        registration = super(event_registration, self).create(vals)
+        registration = super(EventRegistration, self).create(vals)
         if registration._check_auto_confirmation():
             registration.sudo().confirm_registration()
         return registration
@@ -317,7 +329,7 @@ class event_registration(models.Model):
     @api.model
     def _prepare_attendee_values(self, registration):
         """ Method preparing the values to create new attendees based on a
-        sale order line. It takes some registration data (dict-based) that are
+        sales order line. It takes some registration data (dict-based) that are
         optional values coming from an external input like a web page. This method
         is meant to be inherited in various addons that sell events. """
         partner_id = registration.pop('partner_id', self.env.user.partner_id)
@@ -364,18 +376,21 @@ class event_registration(models.Model):
             contact_id = self.partner_id.address_get().get('contact', False)
             if contact_id:
                 contact = self.env['res.partner'].browse(contact_id)
-                self.name = self.name or contact.name
-                self.email = self.email or contact.email
-                self.phone = self.phone or contact.phone
+                self.name = contact.name or self.name
+                self.email = contact.email or self.email
+                self.phone = contact.phone or self.phone
 
     @api.multi
     def message_get_suggested_recipients(self):
-        recipients = super(event_registration, self).message_get_suggested_recipients()
-        for attendee in self:
-            if attendee.email:
-                attendee._message_add_suggested_recipient(recipients, email=attendee.email, reason=_('Customer Email'))
-            if attendee.partner_id:
-                attendee._message_add_suggested_recipient(recipients, partner=attendee.partner_id, reason=_('Customer'))
+        recipients = super(EventRegistration, self).message_get_suggested_recipients()
+        try:
+            for attendee in self:
+                if attendee.partner_id:
+                    attendee._message_add_suggested_recipient(recipients, partner=attendee.partner_id, reason=_('Customer'))
+                elif attendee.email:
+                    attendee._message_add_suggested_recipient(recipients, email=attendee.email, reason=_('Customer Email'))
+        except AccessError:     # no read access rights -> ignore suggested recipients
+            pass
         return recipients
 
     @api.multi
@@ -404,3 +419,22 @@ class event_registration(models.Model):
             'target': 'new',
             'context': ctx,
         }
+
+    @api.multi
+    def get_date_range_str(self):
+        self.ensure_one()
+        today = fields.Datetime.from_string(fields.Datetime.now())
+        event_date = fields.Datetime.from_string(self.event_begin_date)
+        diff = (event_date.date() - today.date())
+        if diff.days <= 0:
+            return _('today')
+        elif diff.days == 1:
+            return _('tomorrow')
+        elif (diff.days < 7):
+            return _('in %d days') % (diff.days, )
+        elif (diff.days < 14):
+            return _('next week')
+        elif event_date.month == (today + relativedelta(months=+1)).month:
+            return _('next month')
+        else:
+            return _('on ') + format_tz(self.with_context({'use_babel': True}).env, self.event_begin_date, tz=self.event_id.date_tz or 'UTC')

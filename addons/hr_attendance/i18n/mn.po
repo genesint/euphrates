@@ -1,33 +1,39 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * hr_attendance
-# 
+#
 # Translators:
+# Otgonbayar Agvaan <gobi.mn@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:40+0000\n"
-"PO-Revision-Date: 2015-09-07 20:05+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Mongolian (http://www.transifex.com/odoo/odoo-9/language/mn/)\n"
+"POT-Creation-Date: 2016-08-18 14:07+0000\n"
+"PO-Revision-Date: 2015-11-16 00:49+0000\n"
+"Last-Translator: Otgonbayar Agvaan <gobi.mn@gmail.com>\n"
+"Language-Team: Mongolian (http://www.transifex.com/odoo/odoo-9/language/"
+"mn/)\n"
+"Language: mn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: mn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: hr_attendance
 #: model:ir.ui.view,arch_db:hr_attendance.report_attendanceerrors
 msgid ""
-"(*) A positive delay means that the employee worked less than recorded.<br/>\n"
+"(*) A positive delay means that the employee worked less than recorded.<br/"
+">\n"
 "(*) A negative delay means that the employee worked more than encoded."
 msgstr ""
+"(*) Эерэг саатал нь ажилтан тэмдэглэснээс бага ажилласан гэсэн утга болно.."
+"<br/>\n"
+"(*) Сөрөг саатал нь ажилтан бүртгэсэнээсээ их ажилласан гэсэн үг.."
 
 #. module: hr_attendance
 #: model:ir.ui.view,arch_db:hr_attendance.report_attendanceerrors
 msgid "<strong>Total period</strong>"
-msgstr ""
+msgstr "<strong>Нийт мөчлөг</strong>"
 
 #. module: hr_attendance
 #: selection:hr.employee,state:0
@@ -57,6 +63,8 @@ msgid ""
 "Allowed difference in minutes between the signin/signout and the timesheet "
 "computation for one sheet. Set this to 0 for no tolerance."
 msgstr ""
+"Нэвтрэх/ гарахын хоорондох зөвшөөрөгдсөн зөрүү бөгөөд нэг хүснэгтийн цаг "
+"бүртгэлийн тооцоололд хэрэглэнэ. Ямар ч хяналт хэрэггүй бол 0 утга олгоно уу"
 
 #. module: hr_attendance
 #: model:ir.ui.view,arch_db:hr_attendance.view_hr_attendance_error
@@ -119,6 +127,8 @@ msgid ""
 "account. Above the maximum tolerance, the error is considered to be "
 "voluntary and will be taken into account."
 msgstr ""
+"Максимум тэвчээрээс дооших ирцийн алдааг анхаарахгүй. Максимум тэвчээрээс "
+"дээших сайн дурынх гэж үзэгдэж анхааралд авагдана."
 
 #. module: hr_attendance
 #: model:ir.ui.view,arch_db:hr_attendance.view_hr_attendance_error
@@ -192,7 +202,7 @@ msgstr "Хэлтэс"
 #: model:ir.model.fields,field_description:hr_attendance.field_hr_attendance_error_display_name
 #: model:ir.model.fields,field_description:hr_attendance.field_report_hr_attendance_report_attendanceerrors_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Дэлгэцийн Нэр"
 
 #. module: hr_attendance
 #: model:ir.model,name:hr_attendance.model_hr_employee
@@ -216,7 +226,9 @@ msgstr "Дуусах огноо"
 #. module: hr_attendance
 #: constraint:hr.attendance:0
 msgid "Error ! Sign in (resp. Sign out) must follow Sign out (resp. Sign in)"
-msgstr "Алдаа ! Орох нь (resp. Sign out) заавал гарсны (resp. Sign in) дараа байх ёстой"
+msgstr ""
+"Алдаа ! Орох нь (resp. Sign out) заавал гарсны (resp. Sign in) дараа байх "
+"ёстой"
 
 #. module: hr_attendance
 #: model:ir.ui.view,arch_db:hr_attendance.view_hr_attendance_filter
@@ -242,7 +254,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:hr_attendance.field_hr_attendance_error___last_update
 #: model:ir.model.fields,field_description:hr_attendance.field_report_hr_attendance_report_attendanceerrors___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Сүүлийн засвар хийсэн огноо"
 
 #. module: hr_attendance
 #: model:ir.model.fields,field_description:hr_attendance.field_hr_employee_last_sign
@@ -273,7 +285,7 @@ msgstr "Хамгийн сүүлд орсон хугацаа: %s,<br />%s.<br />�
 #. module: hr_attendance
 #: model:ir.model.fields,field_description:hr_attendance.field_hr_attendance_error_max_delay
 msgid "Maximum Tolerance (in minutes)"
-msgstr ""
+msgstr "Максимум Тэвчээр (минутаар)"
 
 #. module: hr_attendance
 #: model:ir.ui.view,arch_db:hr_attendance.report_attendanceerrors
@@ -357,8 +369,7 @@ msgstr "Гарах"
 
 #. module: hr_attendance
 #: model:ir.model.fields,help:hr_attendance.field_hr_attendance_action_desc
-msgid ""
-"Specifies the reason for Signing In/Signing Out in case of extra hours."
+msgid "Specifies the reason for Signing In/Signing Out in case of extra hours."
 msgstr "Системд нэвтэрсэн/ системээс гарсан ирцийн үйлдлийг тодорхойлно."
 
 #. module: hr_attendance
@@ -377,17 +388,10 @@ msgid ""
 "The Time Tracking functionality aims to manage employee attendances from "
 "Sign in/Sign out actions. You can also link this feature to an attendance "
 "device using Odoo's web service features."
-msgstr "Цаг бүртгэлийн функциональ нь нэвтрэх/гарах үйлдлээс ажилтны ирцийг удирдахыг зорьдог. Түүнчлэн энэ боломжийг цаг бүртгэлийн төхөөрөмжтэй Odoo-н веб сервисийн тусламжтайгаар холбох боломжтой."
-
-#. module: hr_attendance
-#: model:ir.ui.menu,name:hr_attendance.menu_hr_time_tracking
-msgid "Time Tracking"
-msgstr "Цагийн хяналт"
-
-#. module: hr_attendance
-#: model:ir.ui.menu,name:hr_attendance.timesheet_menu_root
-msgid "Timesheets"
-msgstr "Цагийн Хуваарь"
+msgstr ""
+"Цаг бүртгэлийн функциональ нь нэвтрэх/гарах үйлдлээс ажилтны ирцийг "
+"удирдахыг зорьдог. Түүнчлэн энэ боломжийг цаг бүртгэлийн төхөөрөмжтэй Odoo-н "
+"веб сервисийн тусламжтайгаар холбох боломжтой."
 
 #. module: hr_attendance
 #: model:ir.ui.view,arch_db:hr_attendance.view_hr_attendance_filter
@@ -405,9 +409,17 @@ msgstr "Ажилласан цаг"
 msgid ""
 "You tried to %s with a date anterior to another event !\n"
 "Try to contact the HR Manager to correct attendances."
-msgstr "Та %s-г өмнө нь болсон өөр үйл явдалын огноотойгоор оролдож үзлээ !\nХүний нөөцийн менежертэйгээ холбогдож зөв болгох талаас нь ярина уу."
+msgstr ""
+"Та %s-г өмнө нь болсон өөр үйл явдалын огноотойгоор оролдож үзлээ !\n"
+"Хүний нөөцийн менежертэйгээ холбогдож зөв болгох талаас нь ярина уу."
 
 #. module: hr_attendance
 #: model:ir.model,name:hr_attendance.model_report_hr_attendance_report_attendanceerrors
 msgid "report.hr_attendance.report_attendanceerrors"
-msgstr ""
+msgstr "report.hr_attendance.report_attendanceerrors"
+
+#~ msgid "Time Tracking"
+#~ msgstr "Цагийн хяналт"
+
+#~ msgid "Timesheets"
+#~ msgstr "Цагийн Хуваарь"

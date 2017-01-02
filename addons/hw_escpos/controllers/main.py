@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 import commands
 import logging
-import json
+import math
 import os
 import os.path
-import io
-import base64
-import openerp
-import time
-import random
-import math
-import md5
-import openerp.addons.hw_proxy.controllers.main as hw_proxy
-import pickle
-import re
 import subprocess
+import time
 import traceback
 
 try: 
@@ -24,19 +17,17 @@ try:
 except ImportError:
     escpos = printer = None
 
+from Queue import Queue
 from threading import Thread, Lock
-from Queue import Queue, Empty
 
 try:
     import usb.core
 except ImportError:
     usb = None
 
-from PIL import Image
+from odoo import http, _
 
-from openerp import http
-from openerp.http import request
-from openerp.tools.translate import _
+import odoo.addons.hw_proxy.controllers.main as hw_proxy
 
 _logger = logging.getLogger(__name__)
 
@@ -86,10 +77,15 @@ class EscposDriver(Thread):
             printers = usb.core.find(find_all=True, idVendor=0x0519)
 
         for printer in printers:
+            try:
+                description = usb.util.get_string(printer, 256, printer.iManufacturer) + " " + usb.util.get_string(printer, 256, printer.iProduct)
+            except Exception as e:
+                _logger.error("Can not get printer description: %s" % (e.message or repr(e)))
+                description = 'Unknown printer'
             connected.append({
                 'vendor': printer.idVendor,
                 'product': printer.idProduct,
-                'name': usb.util.get_string(printer, 256, printer.iManufacturer) + " " + usb.util.get_string(printer, 256, printer.iProduct)
+                'name': description
             })
 
         return connected
@@ -104,8 +100,12 @@ class EscposDriver(Thread):
   
         printers = self.connected_usb_devices()
         if len(printers) > 0:
-            self.set_status('connected','Connected to '+printers[0]['name'])
-            return Usb(printers[0]['vendor'], printers[0]['product'])
+            print_dev = Usb(printers[0]['vendor'], printers[0]['product'])
+            self.set_status(
+                'connected',
+                "Connected to %s (in=0x%02x,out=0x%02x)" % (printers[0]['name'], print_dev.in_ep, print_dev.out_ep)
+            )
+            return print_dev
         else:
             self.set_status('disconnected','Printer Not Found')
             return None
@@ -195,6 +195,7 @@ class EscposDriver(Thread):
         localips = ['0.0.0.0','127.0.0.1','127.0.1.1']
         hosting_ap = os.system('pgrep hostapd') == 0
         ssid = subprocess.check_output('iwconfig 2>&1 | grep \'ESSID:"\' | sed \'s/.*"\\(.*\\)"/\\1/\'', shell=True).rstrip()
+        mac = subprocess.check_output('ifconfig | grep -B 1 \'inet addr\' | grep -o \'HWaddr .*\' | sed \'s/HWaddr //\'', shell=True).rstrip()
         ips =  [ c.split(':')[1].split(' ')[0] for c in commands.getoutput("/sbin/ifconfig").split('\n') if 'inet addr' in c ]
         ips =  [ ip for ip in ips if ip not in localips ] 
         eprint.text('\n\n')
@@ -218,6 +219,7 @@ class EscposDriver(Thread):
                 eprint.text(ip+'\n')
 
         if len(ips) >= 1:
+            eprint.text('\nMAC Address:\n' + mac + '\n')
             eprint.text('\nHomepage:\nhttp://'+ips[0]+':8069\n')
 
         eprint.text('\n\n')
@@ -369,4 +371,3 @@ class EscposProxy(hw_proxy.Proxy):
     def print_xml_receipt(self, receipt):
         _logger.info('ESC/POS: PRINT XML RECEIPT') 
         driver.push_task('xml_receipt',receipt)
-

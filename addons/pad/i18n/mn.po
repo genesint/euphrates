@@ -1,20 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * pad
-# 
+#
 # Translators:
+# Otgonbayar Agvaan <gobi.mn@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:40+0000\n"
-"PO-Revision-Date: 2015-08-25 10:20+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Mongolian (http://www.transifex.com/odoo/odoo-9/language/mn/)\n"
+"POT-Creation-Date: 2016-08-18 14:07+0000\n"
+"PO-Revision-Date: 2015-11-15 12:20+0000\n"
+"Last-Translator: Otgonbayar Agvaan <gobi.mn@gmail.com>\n"
+"Language-Team: Mongolian (http://www.transifex.com/odoo/odoo-9/language/"
+"mn/)\n"
+"Language: mn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: mn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: pad
@@ -23,19 +25,9 @@ msgid "Companies"
 msgstr "Компаниуд"
 
 #. module: pad
-#: model:ir.model.fields,field_description:pad.field_pad_common_create_uid
-msgid "Created by"
-msgstr "Үүсгэгч"
-
-#. module: pad
-#: model:ir.model.fields,field_description:pad.field_pad_common_create_date
-msgid "Created on"
-msgstr "Үүсгэсэн"
-
-#. module: pad
 #: model:ir.model.fields,field_description:pad.field_pad_common_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Дэлгэцийн Нэр"
 
 #. module: pad
 #: model:ir.model.fields,help:pad.field_res_company_pad_key
@@ -55,16 +47,6 @@ msgstr "ID"
 #. module: pad
 #: model:ir.model.fields,field_description:pad.field_pad_common___last_update
 msgid "Last Modified on"
-msgstr ""
-
-#. module: pad
-#: model:ir.model.fields,field_description:pad.field_pad_common_write_uid
-msgid "Last Updated by"
-msgstr "Сүүлийн засвар хийсэн"
-
-#. module: pad
-#: model:ir.model.fields,field_description:pad.field_pad_common_write_date
-msgid "Last Updated on"
 msgstr "Сүүлийн засвар хийсэн огноо"
 
 #. module: pad
@@ -84,6 +66,7 @@ msgid ""
 "Pad creation failed, either there is a problem with your pad server URL or "
 "with your connection."
 msgstr ""
+"Хавтанг үүссэнгүй, хавтангийн серверийн URL эсвэл холболтонд асуудал байна."
 
 #. module: pad
 #: model:ir.ui.view,arch_db:pad.view_company_form_with_pad
@@ -111,7 +94,9 @@ msgstr "Хавтанг ачаалах боломжгүй байна"
 msgid ""
 "You must configure the etherpad through the menu Settings > Companies > "
 "Companies, in the configuration tab of your company."
-msgstr "Etherpad-г дараах менюгээр тохируулах ёстой. Тохиргоо > Компаниуд > Компаниуд, компаний тохиргооны хавтаст."
+msgstr ""
+"Etherpad-г дараах менюгээр тохируулах ёстой. Тохиргоо > Компаниуд > "
+"Компаниуд, компаний тохиргооны хавтаст."
 
 #. module: pad
 #: model:ir.ui.view,arch_db:pad.view_company_form_with_pad
@@ -122,3 +107,15 @@ msgstr "Ж: beta.primarypad.com"
 #: model:ir.model,name:pad.model_pad_common
 msgid "pad.common"
 msgstr "pad.common"
+
+#~ msgid "Created by"
+#~ msgstr "Үүсгэгч"
+
+#~ msgid "Created on"
+#~ msgstr "Үүсгэсэн"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Сүүлийн засвар хийсэн"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Сүүлийн засвар хийсэн огноо"

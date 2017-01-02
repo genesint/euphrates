@@ -2,8 +2,8 @@ odoo.define('web.ajax', function (require) {
 "use strict";
 
 var core = require('web.core');
-var time = require('web.time');
 var utils = require('web.utils');
+var time = require('web.time');
 
 function genericJsonRpc (fct_name, params, fct) {
     var data = {
@@ -12,8 +12,9 @@ function genericJsonRpc (fct_name, params, fct) {
         params: params,
         id: Math.floor(Math.random() * 1000 * 1000 * 1000)
     };
-    var xhr = fct(data);    
+    var xhr = fct(data);
     var result = xhr.pipe(function(result) {
+        core.bus.trigger('rpc:result', data, result);
         if (result.error !== undefined) {
             if (result.error.data.arguments[0] !== "bus.Bus not available in test mode") {
                 console.error("Server application error", JSON.stringify(result.error));
@@ -42,7 +43,7 @@ function jsonRpc(url, fct_name, params, settings) {
             contentType: 'application/json'
         }));
     });
-};
+}
 
 function jsonpRpc(url, fct_name, params, settings) {
     settings = settings || {};
@@ -116,7 +117,12 @@ function jsonpRpc(url, fct_name, params, settings) {
             return deferred;
         }
     });
-};
+}
+
+// helper function to make a rpc with a function name hardcoded to 'call'
+function rpc(url, params, settings) {
+    return jsonRpc(url, 'call', params, settings);
+}
 
 // helper
 function realSetTimeout (fct, millis) {
@@ -140,32 +146,52 @@ function loadCSS(url) {
             'type': 'text/css'
         }));
     }
-};
+}
 
-function loadJS(url) {
-    var def = $.Deferred();
-    if ($('script[src="' + url + '"]').length) {
-        def.resolve();
-    } else {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
-        script.onload = script.onreadystatechange = function() {
-            if ((script.readyState && script.readyState != "loaded" && script.readyState != "complete") || script.onload_done) {
-                return;
-            }
-            script.onload_done = true;
-            def.resolve(url);
-        };
-        script.onerror = function () {
-            console.error("Error loading file", script.src);
-            def.reject(url);
-        };
-        var head = document.head || document.getElementsByTagName('head')[0];
-        head.appendChild(script);
-    }
-    return def;
-};
+var loadJS = (function () {
+    var urls = [];
+    var defs = [];
+
+    var load = function loadJS(url) {
+        // Check the DOM to see if a script with the specified url is already there
+        var alreadyRequired = ($('script[src="' + url + '"]').length > 0);
+
+        // If loadJS was already called with the same URL, it will have a registered deferred indicating if
+        // the script has been fully loaded. If not, the deferred has to be initialized. This is initialized
+        // as already resolved if the script was already there without the need of loadJS.
+        var index = _.indexOf(urls, url);
+        if (index < 0) {
+            urls.push(url);
+            index = defs.push(alreadyRequired ? $.when() : $.Deferred()) - 1;
+        }
+
+        // Get the script associated deferred and returns it after initializing the script if needed. The
+        // deferred is marked to be resolved on script load and rejected on script error.
+        var def = defs[index];
+        if (!alreadyRequired) {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+            script.onload = script.onreadystatechange = function() {
+                if ((script.readyState && script.readyState !== "loaded" && script.readyState !== "complete") || script.onload_done) {
+                    return;
+                }
+                script.onload_done = true;
+                def.resolve(url);
+            };
+            script.onerror = function () {
+                console.error("Error loading file", script.src);
+                def.reject(url);
+            };
+            var head = document.head || document.getElementsByTagName('head')[0];
+            head.appendChild(script);
+        }
+        return def;
+    };
+
+    return load;
+})();
+
 
 /**
  * Cooperative file download implementation, for ajaxy APIs.
@@ -203,7 +229,9 @@ function get_file(options) {
     // opening a new window seems the best way to workaround
     if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
         var params = _.extend({}, options.data || {}, {token: token});
-        var url = this.url(options.url, params);
+        var url = options.session.url(options.url, params);
+        if (options.complete) { options.complete(); }
+
         return window.open(url);
     }
 
@@ -301,7 +329,7 @@ function post (controller_url, data) {
 
     var Def = $.Deferred();
     var postData = new FormData();
-    
+
     $.each(data, function(i,val) {
         postData.append(i, val);
     });
@@ -311,7 +339,7 @@ function post (controller_url, data) {
 
     var xhr = new XMLHttpRequest();
     if(xhr.upload) xhr.upload.addEventListener('progress', progressHandler(Def), false);
-      
+
     var ajaxDef = $.ajax(controller_url, {
         xhr: function() {return xhr;},
         data:           postData,
@@ -323,8 +351,6 @@ function post (controller_url, data) {
 
     return Def;
 }
-
-
 
 var loadXML = (function () {
     var loading = false;
@@ -362,6 +388,7 @@ var loadXML = (function () {
 return {
     jsonRpc: jsonRpc,
     jsonpRpc: jsonpRpc,
+    rpc: rpc,
     loadCSS: loadCSS,
     loadJS: loadJS,
     loadXML: loadXML,

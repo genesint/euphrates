@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import time
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class ReportOverdue(models.AbstractModel):
@@ -30,13 +30,13 @@ class ReportOverdue(models.AbstractModel):
             res[row.pop('partner_id')].append(row)
         return res
 
-    @api.multi
-    def render_html(self, data):
+    @api.model
+    def render_html(self, docids, data=None):
         totals = {}
-        lines = self._get_account_move_lines(self.ids)
+        lines = self._get_account_move_lines(docids)
         lines_to_display = {}
         company_currency = self.env.user.company_id.currency_id
-        for partner_id in self.ids:
+        for partner_id in docids:
             lines_to_display[partner_id] = {}
             totals[partner_id] = {}
             for line_tmp in lines[partner_id]:
@@ -58,9 +58,9 @@ class ReportOverdue(models.AbstractModel):
                     totals[partner_id][currency]['mat'] += line['mat']
                     totals[partner_id][currency]['total'] += line['debit'] - line['credit']
         docargs = {
-            'doc_ids': self.ids,
+            'doc_ids': docids,
             'doc_model': 'res.partner',
-            'docs': self.env['res.partner'].browse(self.ids),
+            'docs': self.env['res.partner'].browse(docids),
             'time': time,
             'Lines': lines_to_display,
             'Totals': totals,
